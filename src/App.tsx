@@ -1,12 +1,14 @@
 import Navigation from './components/Navigation';
-import Hero from './components/Hero';
+
 import About from './components/About';
 import Info from './components/Info';
 import Financing from './components/Financing';
-import Ecosystem from './components/Ecosystem';
+
 import Footer from './components/Footer';
 
 import { LanguageProvider } from './context/LanguageContext';
+import Idea from './components/Idea';
+import Hero from './components/Hero';
 
 function App() {
   return (
@@ -14,10 +16,11 @@ function App() {
       <div className="min-h-screen">
         <Navigation />
         <Hero />
+        <Idea />
         <About />
         <Info />
-       {/*  <Financing />
-        <Ecosystem /> */}
+       {/*  <Financing /> */}
+       
         <Footer />
       </div>
     </LanguageProvider>
@@ -25,3 +28,8 @@ function App() {
 }
 
 export default App;
+
+
+
+
+

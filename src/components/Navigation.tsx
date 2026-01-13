@@ -1,6 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
-import logo from '../imagen/logoBioRoute.png';
-import { useLanguage } from '../context/LanguageContext';
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import logo from "../imagen/logoBioRoute.png";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Navigation() {
   const [isNavbarHidden, setIsNavbarHidden] = useState(false);
@@ -24,18 +26,16 @@ export default function Navigation() {
       lastScrollY.current = currentScrollY;
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const toggleLanguage = () => {
-    setLanguage(language === 'es' ? 'en' : 'es');
-  };
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-40 transition-transform duration-300 ease-out
-      ${isNavbarHidden ? '-translate-y-full' : 'translate-y-0'}
+      className={`
+        fixed top-0 left-0 right-0 z-40
+        transition-transform duration-300 ease-out
+        ${isNavbarHidden ? "-translate-y-full" : "translate-y-0"}
       `}
     >
       <div
@@ -54,24 +54,54 @@ export default function Navigation() {
             <img
               src={logo}
               alt="BioRoute Logo"
-              className="h-16 w-auto"
+              className="h-14 w-auto"
             />
           </div>
 
-          {/* BOTÓN CAMBIO IDIOMA */}
-          <button
-            onClick={toggleLanguage}
+          {/* LANGUAGE TOGGLE */}
+          <div
             className="
-              ml-auto flex items-center justify-center
-              min-w-[44px] h-10 px-3
-              rounded-full bg-[#1F3D2B]
-              text-white text-sm font-semibold
-              hover:opacity-90 transition-opacity
+              ml-auto flex items-center
+              rounded-full border border-black/10
+              bg-[#F7F8F6]
+              p-1
+              text-sm font-medium
+              text-zinc-700
+              shadow-inner
             "
-            aria-label="Change language"
           >
-            {language.toUpperCase()}
-          </button>
+            <button
+              onClick={() => setLanguage("es")}
+              className={`
+                px-3 py-1 rounded-full
+                transition-all duration-200
+                ${
+                  language === "es"
+                    ? "bg-[#1F3D2B] text-white shadow"
+                    : "hover:bg-black/5"
+                }
+              `}
+              aria-label="Cambiar a español"
+            >
+              ES
+            </button>
+
+            <button
+              onClick={() => setLanguage("en")}
+              className={`
+                px-3 py-1 rounded-full
+                transition-all duration-200
+                ${
+                  language === "en"
+                    ? "bg-[#1F3D2B] text-white shadow"
+                    : "hover:bg-black/5"
+                }
+              `}
+              aria-label="Switch to English"
+            >
+              EN
+            </button>
+          </div>
         </div>
       </div>
     </nav>
