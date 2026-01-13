@@ -56,12 +56,9 @@ export default function About() {
     (t.image.src as unknown as { src: string })?.src ?? (t.image.src as unknown as string);
 
   return (
-    <section id="about" className="relative py-20 md:py-28 bg-[#FDFDFB] overflow-hidden">
+    <section id="about" className="relative py-12 bg-[#FDFDFB] overflow-hidden">
       {/* Subtle background accents */}
-      <div aria-hidden className="absolute inset-0">
-        <div className="absolute -top-24 -right-24 h-72 w-72 rounded-full bg-emerald-200/35 blur-3xl" />
-        <div className="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-rose-200/35 blur-3xl" />
-      </div>
+    
 
       <div className="relative max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-12">

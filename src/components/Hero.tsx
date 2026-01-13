@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import { useLanguage } from "../context/LanguageContext"; // ✅ ajusta la ruta según tu proyecto
-import heroImg from "../imagen/fondo.png";
+import { useLanguage } from "../context/LanguageContext";
+import heroImg from "../imagen/fondo.jpg";
 
 export default function Hero() {
   const { language } = useLanguage();
@@ -18,7 +18,6 @@ export default function Hero() {
       line3: "Más valor.",
       desc:
         "Tecnología de protección postcosecha diseñada para mantener la calidad, frescura y competitividad de la fruta en rutas de exportación de larga distancia.",
-      alt: "Solución postcosecha",
     },
     en: {
       badge: "Innovation for agro-exports",
@@ -27,50 +26,50 @@ export default function Hero() {
       line3: "More value.",
       desc:
         "Post-harvest protection technology designed to preserve fruit quality, freshness, and competitiveness across long-distance export routes.",
-      alt: "Post-harvest solution",
     },
   } as const;
 
   const t = content[language];
 
   return (
-    <section className="w-full bg-[#FDFDFB]">
-      <div className="mx-auto grid min-h-[100svh] max-w-7xl grid-cols-1 items-center gap-12 px-6 py-16 md:grid-cols-2">
-        {/* Left: Text (CENTERED) */}
-        <div className="flex h-full flex-col justify-center text-center animate-fadeInUp">
-          <p className="mb-4 text-sm font-medium tracking-wide text-[#000000]">
-            {t.badge}
-          </p>
-
-          <h1 className="text-balance text-4xl font-semibold tracking-tight md:text-6xl">
-            <span className="block text-[#000000]">{t.line1}</span>
-            <span className="block text-[#023012ff]">{t.line2}</span>
-            <span className="block text-[#3f0202ff]">{t.line3}</span>
-          </h1>
-
-          <p className="mt-6 mx-auto max-w-xl text-base leading-relaxed text-zinc-600 md:text-lg">
-            {t.desc}
-          </p>
-        </div>
-
-        {/* Right: Image */}
-        <div className="animate-fadeInUp [animation-delay:120ms]">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={imgSrc}
-            alt={t.alt}
-            className="w-full h-[320px] md:h-[520px] object-contain"
-            loading="eager"
-          />
-        </div>
+    <section className="relative min-h-[100svh] w-full overflow-hidden">
+      {/* Background image */}
+      <div className="absolute inset-0 -z-20">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={imgSrc}
+          alt="Hero background"
+          className="h-full w-full object-cover"
+          loading="eager"
+        />
       </div>
 
-      {/* ✅ CSS-only animation */}
+      {/* Dark overlay for readability */}
+      <div className="absolute inset-0 -z-10 bg-black/55" />
+
+      {/* Content */}
+      <div className="relative z-10 flex min-h-[100svh] flex-col items-center justify-center px-6 text-center animate-fadeInUp">
+        <p className="mb-4 text-sm font-medium tracking-wide text-white/90">
+          {t.badge}
+        </p>
+
+        <h1 className="text-balance text-4xl font-semibold tracking-tight text-white md:text-6xl">
+          <span className="block">{t.line1}</span>
+          <span className="block">{t.line2}</span>
+          <span className="block">{t.line3}</span>
+        </h1>
+
+        <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/85 md:text-lg">
+          {t.desc}
+        </p>
+      </div>
+
+      {/* CSS-only animation */}
       <style>{`
         @keyframes fadeInUp {
           from {
             opacity: 0;
-            transform: translateY(12px);
+            transform: translateY(14px);
           }
           to {
             opacity: 1;
@@ -78,7 +77,7 @@ export default function Hero() {
           }
         }
         .animate-fadeInUp {
-          animation: fadeInUp 600ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+          animation: fadeInUp 700ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
         }
       `}</style>
     </section>

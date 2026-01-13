@@ -44,14 +44,14 @@ export default function Idea() {
   return (
     <section
       id="idea"
-      className="relative py-24 md:py-32 bg-[#FDFDFB] overflow-hidden"
+      className="relative py-12 bg-[#FDFDFB] overflow-hidden"
     >
       {/* Subtle background accents */}
-      <div aria-hidden className="absolute inset-0">
+      {/* <div aria-hidden className="absolute inset-0">
         <div className="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-emerald-200/40 blur-3xl" />
         <div className="absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-rose-200/40 blur-3xl" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(0,0,0,0.04),transparent_55%)]" />
-      </div>
+      </div> */}
 
       <div className="relative max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-12 items-start">

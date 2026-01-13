@@ -40,67 +40,78 @@ export default function Navigation() {
     >
       <div
         className="
-          mx-auto w-[90vw] max-w-7xl
+          mx-auto w-[92vw] max-w-7xl
           bg-white
           rounded-b-3xl
           shadow-[0_6px_24px_rgba(0,0,0,0.08)]
           border border-t-0 border-black/5
-          px-8
+          px-4 sm:px-8
         "
       >
-        <div className="relative flex items-center h-16">
-          {/* LOGO CENTRADO */}
-          <div className="absolute left-1/2 -translate-x-1/2 flex items-center">
+        {/* ✅ 3-column layout prevents overlap on mobile */}
+        <div className="grid h-16 grid-cols-[1fr_auto_1fr] items-center">
+          {/* Left spacer */}
+          <div />
+
+          {/* Center logo (no absolute) */}
+          <div className="flex justify-center">
             <img
-              src={logo}
+              src={(logo as unknown as { src: string })?.src ?? (logo as unknown as string)}
               alt="BioRoute Logo"
-              className="h-14 w-auto"
+              className="h-10 sm:h-12 w-auto select-none"
+              draggable={false}
             />
           </div>
 
-          {/* LANGUAGE TOGGLE */}
-          <div
-            className="
-              ml-auto flex items-center
-              rounded-full border border-black/10
-              bg-[#F7F8F6]
-              p-1
-              text-sm font-medium
-              text-zinc-700
-              shadow-inner
-            "
-          >
-            <button
-              onClick={() => setLanguage("es")}
-              className={`
-                px-3 py-1 rounded-full
-                transition-all duration-200
-                ${
-                  language === "es"
-                    ? "bg-[#1F3D2B] text-white shadow"
-                    : "hover:bg-black/5"
-                }
-              `}
-              aria-label="Cambiar a español"
+          {/* Right: Language toggle */}
+          <div className="flex justify-end">
+            <div
+              className="
+                inline-flex items-center
+                rounded-full border border-black/10
+                bg-[#F7F8F6]
+                p-1
+                text-xs sm:text-sm font-medium
+                text-zinc-700
+                shadow-inner
+              "
             >
-              ES
-            </button>
+              <button
+                onClick={() => setLanguage("es")}
+                className={`
+                  rounded-full transition-all duration-200
+                  px-2.5 py-1 sm:px-3 sm:py-1
+                  focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1F3D2B]/30
+                  ${
+                    language === "es"
+                      ? "bg-[#1F3D2B] text-white shadow-sm"
+                      : "hover:bg-black/5"
+                  }
+                `}
+                aria-label="Cambiar a español"
+                type="button"
+              >
+                ES
+              </button>
 
-            <button
-              onClick={() => setLanguage("en")}
-              className={`
-                px-3 py-1 rounded-full
-                transition-all duration-200
-                ${
-                  language === "en"
-                    ? "bg-[#1F3D2B] text-white shadow"
-                    : "hover:bg-black/5"
-                }
-              `}
-              aria-label="Switch to English"
-            >
-              EN
-            </button>
+              <button
+                onClick={() => setLanguage("en")}
+                className={`
+                  rounded-full transition-all duration-200
+                  px-2.5 py-1 sm:px-3 sm:py-1
+                  focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1F3D2B]/30
+                  ${
+                    language === "en"
+                      ? "bg-[#1F3D2B] text-white shadow-sm"
+                      : "hover:bg-black/5"
+                  }
+                `}
+                aria-label="Switch to English"
+                type="button"
+              >
+                EN
+              </button>
+            </div>
           </div>
         </div>
       </div>

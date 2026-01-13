@@ -40,13 +40,9 @@ export default function Info() {
     (img as { src: string })?.src ?? (img as string);
 
   return (
-    <section id="info" className="relative py-20 md:py-28 bg-[#FDFDFB] overflow-hidden">
+    <section id="info" className="relative py-12 bg-[#FDFDFB] overflow-hidden">
       {/* Soft background accents */}
-      <div aria-hidden className="absolute inset-0">
-        <div className="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-emerald-200/35 blur-3xl" />
-        <div className="absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-rose-200/35 blur-3xl" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(0,0,0,0.04),transparent_55%)]" />
-      </div>
+     
 
       <div className="relative max-w-6xl mx-auto px-6">
         {/* Header */}
