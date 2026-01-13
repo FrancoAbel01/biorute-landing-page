@@ -1,4 +1,3 @@
-
 import { useLanguage } from "../context/LanguageContext";
 
 export default function Idea() {
@@ -44,66 +43,88 @@ export default function Idea() {
   return (
     <section
       id="idea"
-      className="relative py-12 bg-[#FDFDFB] overflow-hidden"
+      className="relative py-16 bg-[#E7D3B7] overflow-hidden"
     >
-      {/* Subtle background accents */}
-      {/* <div aria-hidden className="absolute inset-0">
-        <div className="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-emerald-200/40 blur-3xl" />
-        <div className="absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-rose-200/40 blur-3xl" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(0,0,0,0.04),transparent_55%)]" />
-      </div> */}
-
       <div className="relative max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-12 items-start">
-          {/* Left column: Title + lead + stats */}
+          
+          {/* LEFT COLUMN */}
           <div className="md:col-span-5 md:sticky md:top-24">
-            <div className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/60 px-4 py-2 text-xs font-semibold tracking-wide text-black backdrop-blur">
-              <span className="h-2 w-2 rounded-full bg-emerald-600" />
+            {/* Eyebrow */}
+            <div className="inline-flex items-center gap-2 rounded-full border border-black/20 bg-white px-4 py-2 text-xs font-semibold tracking-wide text-[#000000] shadow-sm">
+              <span className="h-2 w-2 rounded-full bg-[#1F3D2B]" />
               {t.eyebrow}
             </div>
 
+            {/* Title */}
             <h2 className="mt-5 text-3xl md:text-5xl font-semibold tracking-tight text-[#1F3D2B]">
               {t.title}
             </h2>
 
-            <p className="mt-5 text-base md:text-lg leading-relaxed text-zinc-700 max-w-xl">
+            {/* Lead */}
+            <p className="mt-5 text-base md:text-lg leading-relaxed text-[#000000] max-w-xl">
               {t.lead}
             </p>
 
-            {/* Stats */}
-            <div className="mt-7 grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {/* Stats cards */}
+            <div className="mt-7 grid grid-cols-1 sm:grid-cols-3 gap-4">
               {t.bullets.map((b, i) => (
                 <div
                   key={i}
-                  className="rounded-2xl border border-black/10 bg-white/70 px-4 py-4 backdrop-blur"
+                  className="
+                    rounded-2xl
+                    bg-white
+                    px-4 py-4
+                    border border-black/10
+                    shadow-[0_8px_24px_rgba(0,0,0,0.12)]
+                  "
                 >
-                  <div className="text-xs text-zinc-500">{b.label}</div>
-                  <div className="mt-1 text-sm font-semibold text-zinc-900">
+                  <div className="text-xs text-[#000000]/70">
+                    {b.label}
+                  </div>
+                  <div className="mt-1 text-sm font-semibold text-[#000000]">
                     {b.value}
                   </div>
                 </div>
               ))}
             </div>
 
-            <div className="mt-6 text-xs text-zinc-500">
+            <div className="mt-6 text-xs text-[#000000]/70">
               * Source: ODEPA / Central Bank
             </div>
           </div>
 
-          {/* Right column: Content */}
+          {/* RIGHT COLUMN */}
           <div className="md:col-span-7">
-            <div className="rounded-3xl border border-black/10 bg-white/70 p-6 md:p-10 shadow-[0_18px_60px_rgba(0,0,0,0.06)] backdrop-blur">
-              <div className="space-y-6 text-[15px] md:text-lg text-zinc-700 leading-relaxed">
+            <div
+              className="
+                rounded-3xl
+                bg-white
+                p-6 md:p-10
+                border border-black/10
+                shadow-[0_16px_48px_rgba(0,0,0,0.14)]
+              "
+            >
+              <div className="space-y-6 text-[15px] md:text-lg text-[#000000] leading-relaxed">
                 {t.paragraphs.map((text, index) => (
                   <p key={index}>{text}</p>
                 ))}
               </div>
 
-              {/* Divider + highlight */}
-              <div className="my-10 h-px w-full bg-black/10" />
+              {/* Divider */}
+              <div className="my-10 h-px w-full bg-black/20" />
 
-              <div className="rounded-2xl bg-emerald-50 border border-emerald-200/60 p-5 md:p-6">
-                <p className="text-sm md:text-base text-emerald-900 leading-relaxed">
+              {/* Highlight */}
+              <div
+                className="
+                  rounded-2xl
+                  bg-[#F3E6D5]
+                  border border-black/10
+                  p-5 md:p-6
+                  shadow-[0_6px_20px_rgba(0,0,0,0.12)]
+                "
+              >
+                <p className="text-sm md:text-base text-[#000000] leading-relaxed font-medium">
                   {language === "es"
                     ? "El problema no es la calidad: es el tiempo. La vida útil define qué mercados son alcanzables."
                     : "The issue isn’t quality: it’s time. Shelf life determines which markets are reachable."}
@@ -111,6 +132,7 @@ export default function Idea() {
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>

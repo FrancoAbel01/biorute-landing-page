@@ -3,8 +3,8 @@
 import { useLanguage } from "../context/LanguageContext";
 
 // 👉 cambia estas rutas por tus imágenes reales
-import aboutEn from "../imagen/english_table.jpeg";
-import aboutEs from "../imagen/español_tabla.jpeg";
+import aboutEn from "../imagen/english_table.png";
+import aboutEs from "../imagen/español_tabla.png";
 
 export default function About() {
   const { language } = useLanguage();
@@ -28,6 +28,7 @@ export default function About() {
         src: aboutEn,
         alt: "Anti-ripening peptide technology – English",
       },
+      caption: "Technology comparison and results overview.",
     },
     es: {
       eyebrow: "Tecnología",
@@ -47,49 +48,69 @@ export default function About() {
         src: aboutEs,
         alt: "Tecnología de péptidos antimaduración – Español",
       },
+      caption: "Comparación y resultados de la tecnología aplicada.",
     },
   } as const;
 
   const t = content[language];
 
   const imgSrc =
-    (t.image.src as unknown as { src: string })?.src ?? (t.image.src as unknown as string);
+    (t.image.src as unknown as { src: string })?.src ??
+    (t.image.src as unknown as string);
 
   return (
-    <section id="about" className="relative py-12 bg-[#FDFDFB] overflow-hidden">
-      {/* Subtle background accents */}
-    
-
+    <section id="about" className="relative py-16 bg-[#E7D3B7] overflow-hidden">
       <div className="relative max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-12">
           {/* Left: Content */}
           <div className="md:col-span-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-4 py-2 text-xs font-semibold tracking-wide text-zinc-900 backdrop-blur animate-fadeInUp">
-              <span className="h-2 w-2 rounded-full bg-emerald-600" />
+            {/* Eyebrow */}
+            <div
+              className="
+                inline-flex items-center gap-2
+                rounded-full border border-black/20
+                bg-white px-4 py-2
+                text-xs font-semibold tracking-wide
+                text-[#000000]
+                shadow-[0_6px_18px_rgba(0,0,0,0.12)]
+                animate-fadeInUp
+              "
+            >
+              <span className="h-2 w-2 rounded-full bg-[#1F3D2B]" />
               {t.eyebrow}
             </div>
 
+            {/* Title (verde oscuro permitido) */}
             <h2 className="mt-5 text-3xl md:text-5xl font-semibold tracking-tight text-[#1F3D2B] animate-fadeInUp [animation-delay:60ms]">
               {t.title}
             </h2>
 
-            <p className="mt-4 text-base md:text-lg leading-relaxed text-zinc-700 max-w-xl animate-fadeInUp [animation-delay:120ms]">
+            {/* Lead (negro sólido) */}
+            <p className="mt-4 text-base md:text-lg leading-relaxed text-[#000000] max-w-xl animate-fadeInUp [animation-delay:120ms]">
               {t.lead}
             </p>
 
-            {/* Highlights */}
-            <div className="mt-7 flex flex-wrap gap-2 animate-fadeInUp [animation-delay:180ms]">
+            {/* Highlights (pills con sombra) */}
+            <div className="mt-7 flex flex-wrap gap-3 animate-fadeInUp [animation-delay:180ms]">
               {t.highlights.map((h, idx) => (
                 <span
                   key={idx}
-                  className="rounded-full border border-black/10 bg-white/70 px-4 py-2 text-sm text-zinc-800 backdrop-blur"
+                  className="
+                    rounded-full
+                    border border-black/15
+                    bg-white
+                    px-4 py-2
+                    text-sm text-[#000000]
+                    shadow-[0_6px_18px_rgba(0,0,0,0.12)]
+                  "
                 >
                   {h.label}
                 </span>
               ))}
             </div>
 
-            <div className="mt-8 space-y-6 text-[15px] md:text-lg text-zinc-700 leading-relaxed animate-fadeInUp [animation-delay:240ms]">
+            {/* Paragraphs (negro sólido) */}
+            <div className="mt-8 space-y-6 text-[15px] md:text-lg text-[#000000] leading-relaxed animate-fadeInUp [animation-delay:240ms]">
               {t.paragraphs.map((p, idx) => (
                 <p key={idx}>{p}</p>
               ))}
@@ -98,12 +119,17 @@ export default function About() {
 
           {/* Right: Image (FULLY VISIBLE) */}
           <div className="md:col-span-6 animate-fadeInUp [animation-delay:140ms]">
-            {/* 
-              ✅ Garantía de imagen completa:
-              - object-contain (no recorta)
-              - contenedor con altura definida
-            */}
-            <div className="w-full">
+            {/* ✅ Imagen completa garantizada */}
+            <div
+              className="
+                w-full
+                rounded-3xl
+                bg-white
+                border border-black/10
+                shadow-[0_16px_48px_rgba(0,0,0,0.14)]
+                p-4
+              "
+            >
               <div className="relative w-full h-[320px] sm:h-[380px] md:h-[520px]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -114,10 +140,9 @@ export default function About() {
                 />
               </div>
 
-              <p className="mt-3 text-sm text-zinc-500 text-center">
-                {language === "es"
-                  ? "Comparación y resultados de la tecnología aplicada."
-                  : "Technology comparison and results overview."}
+              {/* Caption (negro sólido pero suave) */}
+              <p className="mt-3 text-sm text-center text-[#000000]/70">
+                {t.caption}
               </p>
             </div>
           </div>

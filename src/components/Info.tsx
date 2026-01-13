@@ -18,8 +18,8 @@ export default function Info() {
       description:
         "It is a liquid solution applied directly into the wash tanks at processing plants. It creates an extra protective layer from which the peptides diffuse.",
       images: [
-        { src: infoEn1, alt: "Ethylock / CherryStop – Cherry (EN)", tag: "CherryStop" },
-        { src: infoEn2, alt: "Ethylock / CherryStop – Avocado (EN)", tag: "Ethylock" },
+        { src: infoEn1, alt: "Ethylock / CherryStop – Cherry (EN)" },
+        { src: infoEn2, alt: "Ethylock / CherryStop – Avocado (EN)" },
       ],
     },
     es: {
@@ -28,35 +28,43 @@ export default function Info() {
       description:
         "Es una solución líquida que se aplica directamente en los tanques de lavado de las plantas de proceso. Crea una capa protectora extra desde la cual los péptidos se difunden.",
       images: [
-        { src: infoEs1, alt: "Ethylock / CherryStop – Cereza (ES)", tag: "CherryStop" },
-        { src: infoEs2, alt: "Ethylock / CherryStop – Palta (ES)", tag: "Ethylock" },
+        { src: infoEs1, alt: "Ethylock / CherryStop – Cereza (ES)" },
+        { src: infoEs2, alt: "Ethylock / CherryStop – Palta (ES)" },
       ],
     },
   } as const;
 
   const t = content[language];
 
-  const toSrc = (img: unknown) =>
-    (img as { src: string })?.src ?? (img as string);
+  const toSrc = (img: unknown) => (img as { src: string })?.src ?? (img as string);
 
   return (
-    <section id="info" className="relative py-12 bg-[#FDFDFB] overflow-hidden">
-      {/* Soft background accents */}
-     
-
+    <section id="info" className="relative py-16 bg-[#E7D3B7] overflow-hidden">
       <div className="relative max-w-6xl mx-auto px-6">
         {/* Header */}
         <div className="text-center">
-          <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-4 py-2 text-xs font-semibold tracking-wide text-zinc-900 backdrop-blur animate-fadeInUp">
-            <span className="h-2 w-2 rounded-full bg-emerald-600" />
+          <div
+            className="
+              mx-auto inline-flex items-center gap-2
+              rounded-full border border-black/20
+              bg-white px-4 py-2
+              text-xs font-semibold tracking-wide
+              text-[#000000]
+              shadow-[0_6px_18px_rgba(0,0,0,0.12)]
+              animate-fadeInUp
+            "
+          >
+            <span className="h-2 w-2 rounded-full bg-[#1F3D2B]" />
             {t.eyebrow}
           </div>
 
+          {/* Title (verde oscuro permitido) */}
           <h2 className="mt-5 text-3xl md:text-5xl font-semibold tracking-tight text-[#1F3D2B] animate-fadeInUp [animation-delay:60ms]">
             {t.title}
           </h2>
 
-          <p className="mx-auto mt-5 max-w-3xl text-base md:text-lg leading-relaxed text-zinc-700 animate-fadeInUp [animation-delay:120ms]">
+          {/* Description (negro sólido) */}
+          <p className="mx-auto mt-5 max-w-3xl text-base md:text-lg leading-relaxed text-[#000000] animate-fadeInUp [animation-delay:120ms]">
             {t.description}
           </p>
         </div>
@@ -69,13 +77,18 @@ export default function Info() {
               className="animate-fadeInUp"
               style={{ animationDelay: `${180 + idx * 80}ms` }}
             >
-              {/* ✅ FULL IMAGE VISIBLE: object-contain + fixed-height wrapper */}
-              <div className="relative w-full h-[320px] md:h-[420px] bg-white/70 border border-black/10 rounded-3xl overflow-hidden backdrop-blur">
-                {/* label */}
-                {/* <div className="absolute left-4 top-4 z-10 rounded-full border border-black/10 bg-white/80 px-3 py-1 text-xs font-semibold text-zinc-900">
-                  {img.tag}
-                </div> */}
-
+              {/* ✅ FULL IMAGE VISIBLE + modern shadow card */}
+              <div
+                className="
+                  relative w-full
+                  h-[320px] md:h-[420px]
+                  rounded-3xl
+                  bg-white
+                  border border-black/10
+                  shadow-[0_16px_48px_rgba(0,0,0,0.14)]
+                  overflow-hidden
+                "
+              >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={toSrc(img.src)}
@@ -85,7 +98,8 @@ export default function Info() {
                 />
               </div>
 
-              <figcaption className="mt-3 text-sm text-zinc-600 text-center">
+              {/* Caption (negro sólido) */}
+              <figcaption className="mt-3 text-sm text-[#000000] text-center">
                 {img.alt}
               </figcaption>
             </figure>

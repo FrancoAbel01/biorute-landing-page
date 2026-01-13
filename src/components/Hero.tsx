@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useLanguage } from "../context/LanguageContext";
-import heroImg from "../imagen/fondo.jpg";
+import heroImg from "../imagen/fondo.png";
 
 export default function Hero() {
   const { language } = useLanguage();
