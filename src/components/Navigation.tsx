@@ -40,16 +40,16 @@ export default function Navigation() {
     >
       <div
         className="
-          mx-auto w-[92vw] max-w-7xl
-          bg-white
-          rounded-b-3xl
+          mx-auto w-[91vw] max-w-7xl
+          bg-[#F9F3E7]
+          rounded-b-md
           shadow-[0_6px_24px_rgba(0,0,0,0.08)]
           border border-t-0 border-black/5
           px-4 sm:px-8
         "
       >
         {/* ✅ 3-column layout prevents overlap on mobile */}
-        <div className="grid h-16 grid-cols-[1fr_auto_1fr] items-center">
+        <div className="grid h-12 grid-cols-[1fr_auto_1fr] items-center">
           {/* Left spacer */}
           <div />
 
