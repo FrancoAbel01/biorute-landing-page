@@ -36,40 +36,34 @@ export default function Info() {
 
   const t = content[language];
 
-  const toSrc = (img: unknown) => (img as { src: string })?.src ?? (img as string);
+  const toSrc = (img: unknown) =>
+    (img as { src: string })?.src ?? (img as string);
 
   return (
-    <section id="info" className="relative py-16 bg-[#E7D3B7] overflow-hidden">
+    <section
+      id="info"
+      className="relative py-16 bg-[#F9F3E7] overflow-hidden text-[#244629]"
+    >
       <div className="relative max-w-6xl mx-auto px-6">
-        {/* Header */}
+        {/* HEADER */}
         <div className="text-center">
-          <div
-            className="
-              mx-auto inline-flex items-center gap-2
-              rounded-full border border-black/20
-              bg-white px-4 py-2
-              text-xs font-semibold tracking-wide
-              text-[#000000]
-              shadow-[0_6px_18px_rgba(0,0,0,0.12)]
-              animate-fadeInUp
-            "
-          >
-            <span className="h-2 w-2 rounded-full bg-[#1F3D2B]" />
+          <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-[#244629]/20 bg-white px-4 py-2 text-xs font-semibold tracking-wide text-[#244629] shadow-[0_6px_18px_rgba(0,0,0,0.10)] animate-fadeInUp">
+            <span className="h-2 w-2 rounded-full bg-[#244629]" />
             {t.eyebrow}
           </div>
 
-          {/* Title (verde oscuro permitido) */}
-          <h2 className="mt-5 text-3xl md:text-5xl font-semibold tracking-tight text-[#1F3D2B] animate-fadeInUp [animation-delay:60ms]">
+          {/* Title */}
+          <h2 className="mt-5 text-3xl md:text-5xl font-semibold tracking-tight text-[#244629] animate-fadeInUp [animation-delay:60ms]">
             {t.title}
           </h2>
 
-          {/* Description (negro sólido) */}
-          <p className="mx-auto mt-5 max-w-3xl text-base md:text-lg leading-relaxed text-[#000000] animate-fadeInUp [animation-delay:120ms]">
+          {/* Description */}
+          <p className="mx-auto mt-5 max-w-3xl text-base md:text-lg leading-relaxed text-[#244629]/80 animate-fadeInUp [animation-delay:120ms]">
             {t.description}
           </p>
         </div>
 
-        {/* Images grid */}
+        {/* IMAGES GRID */}
         <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2">
           {t.images.map((img, idx) => (
             <figure
@@ -77,18 +71,7 @@ export default function Info() {
               className="animate-fadeInUp"
               style={{ animationDelay: `${180 + idx * 80}ms` }}
             >
-              {/* ✅ FULL IMAGE VISIBLE + modern shadow card */}
-              <div
-                className="
-                  relative w-full
-                  h-[320px] md:h-[420px]
-                  rounded-3xl
-                  bg-white
-                  border border-black/10
-                  shadow-[0_16px_48px_rgba(0,0,0,0.14)]
-                  overflow-hidden
-                "
-              >
+              <div className="relative w-full h-[320px] md:h-[420px] rounded-3xl bg-white border border-[#244629]/15 shadow-[0_16px_48px_rgba(0,0,0,0.12)] overflow-hidden">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={toSrc(img.src)}
@@ -98,8 +81,8 @@ export default function Info() {
                 />
               </div>
 
-              {/* Caption (negro sólido) */}
-              <figcaption className="mt-3 text-sm text-[#000000] text-center">
+              {/* Caption */}
+              <figcaption className="mt-3 text-sm text-[#244629]/70 text-center">
                 {img.alt}
               </figcaption>
             </figure>
@@ -107,7 +90,7 @@ export default function Info() {
         </div>
       </div>
 
-      {/* ✅ CSS-only animation */}
+      {/* Animación */}
       <style>{`
         @keyframes fadeInUp {
           from { opacity: 0; transform: translateY(12px); }

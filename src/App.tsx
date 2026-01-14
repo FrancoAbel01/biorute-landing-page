@@ -2,7 +2,7 @@ import Navigation from './components/Navigation';
 
 import About from './components/About';
 import Info from './components/Info';
-import Financing from './components/Financing';
+
 
 import Footer from './components/Footer';
 
@@ -18,9 +18,7 @@ function App() {
         <Hero />
         <Idea />
         <About />
-        <Info />
-       {/*  <Financing /> */}
-       
+        <Info />       
         <Footer />
       </div>
     </LanguageProvider>

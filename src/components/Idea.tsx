@@ -15,9 +15,9 @@ export default function Idea() {
         { label: "Share of GDP", value: "1.5%" },
       ],
       paragraphs: [
-        `Our fruit stands out globally for its quality, flavor, and food safety. However, Chile’s geographical location creates a major challenge: the most profitable markets are far away, while nearby markets are highly saturated by other exporters.`,
-        `Dehydration, decay, and over-ripening are the main issues affecting fruit during long-distance transport. Although exporters have spent more than 15 years improving processes, fungicide dosages, and packaging, there is still significant uncaptured value due to the product’s short shelf life.`,
-        `Fifty days to reach India and forty days to arrive at supermarkets in China are just two examples of barriers that have yet to be overcome for avocados and cherries, respectively.`,
+        "Our fruit stands out globally for its quality, flavor, and food safety. However, Chile’s geographical location creates a major challenge: the most profitable markets are far away, while nearby markets are highly saturated by other exporters.",
+        "Dehydration, decay, and over-ripening are the main issues affecting fruit during long-distance transport. Although exporters have spent more than 15 years improving processes, fungicide dosages, and packaging, there is still significant uncaptured value due to the product’s short shelf life.",
+        "Fifty days to reach India and forty days to arrive at supermarkets in China are just two examples of barriers that have yet to be overcome for avocados and cherries, respectively.",
       ],
     },
     es: {
@@ -31,9 +31,9 @@ export default function Idea() {
         { label: "Participación PIB", value: "1,5%" },
       ],
       paragraphs: [
-        `Nuestra fruta destaca a nivel global por su calidad, sabor y seguridad alimentaria. Sin embargo, la ubicación geográfica de Chile representa una desventaja: los mercados más rentables se encuentran a gran distancia, mientras que los mercados cercanos están saturados por otros exportadores.`,
-        `La deshidratación, la descomposición y la sobremaduración son los principales problemas que se producen durante el transporte de larga distancia. Si bien los exportadores han trabajado durante más de 15 años en mejorar procesos, dosis de fungicidas y envases, aún existe un valor significativo no capturado debido a la corta vida útil del producto.`,
-        `Cincuenta días para llegar a India y cuarenta días para alcanzar supermercados en China son solo dos ejemplos de barreras que aún no han sido superadas para las paltas y las cerezas, respectivamente.`,
+        "Nuestra fruta destaca a nivel global por su calidad, sabor y seguridad alimentaria. Sin embargo, la ubicación geográfica de Chile representa una desventaja: los mercados más rentables se encuentran a gran distancia, mientras que los mercados cercanos están saturados por otros exportadores.",
+        "La deshidratación, la descomposición y la sobremaduración son los principales problemas que se producen durante el transporte de larga distancia. Si bien los exportadores han trabajado durante más de 15 años en mejorar procesos, dosis de fungicidas y envases, aún existe un valor significativo no capturado debido a la corta vida útil del producto.",
+        "Cincuenta días para llegar a India y cuarenta días para alcanzar supermercados en China son solo dos ejemplos de barreras que aún no han sido superadas para las paltas y las cerezas, respectivamente.",
       ],
     },
   } as const;
@@ -43,88 +43,66 @@ export default function Idea() {
   return (
     <section
       id="idea"
-      className="relative py-16 bg-[#E7D3B7] overflow-hidden"
+      className="relative py-16 bg-[#F9F3E7] overflow-hidden text-[#244629]"
     >
       <div className="relative max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-12 items-start">
-          
+
           {/* LEFT COLUMN */}
           <div className="md:col-span-5 md:sticky md:top-24">
             {/* Eyebrow */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-black/20 bg-white px-4 py-2 text-xs font-semibold tracking-wide text-[#000000] shadow-sm">
-              <span className="h-2 w-2 rounded-full bg-[#1F3D2B]" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#244629]/20 bg-white px-4 py-2 text-xs font-semibold tracking-wide text-[#244629] shadow-sm">
+              <span className="h-2 w-2 rounded-full bg-[#244629]" />
               {t.eyebrow}
             </div>
 
             {/* Title */}
-            <h2 className="mt-5 text-3xl md:text-5xl font-semibold tracking-tight text-[#1F3D2B]">
+            <h2 className="mt-5 text-3xl md:text-5xl font-semibold tracking-tight text-[#244629]">
               {t.title}
             </h2>
 
             {/* Lead */}
-            <p className="mt-5 text-base md:text-lg leading-relaxed text-[#000000] max-w-xl">
+            <p className="mt-5 text-base md:text-lg leading-relaxed text-[#244629]/80 max-w-xl">
               {t.lead}
             </p>
 
-            {/* Stats cards */}
+            {/* Stats */}
             <div className="mt-7 grid grid-cols-1 sm:grid-cols-3 gap-4">
               {t.bullets.map((b, i) => (
                 <div
                   key={i}
-                  className="
-                    rounded-2xl
-                    bg-white
-                    px-4 py-4
-                    border border-black/10
-                    shadow-[0_8px_24px_rgba(0,0,0,0.12)]
-                  "
+                  className="rounded-2xl bg-white px-4 py-4 border border-[#244629]/15 shadow-[0_8px_24px_rgba(0,0,0,0.10)]"
                 >
-                  <div className="text-xs text-[#000000]/70">
+                  <div className="text-xs text-[#244629]/70">
                     {b.label}
                   </div>
-                  <div className="mt-1 text-sm font-semibold text-[#000000]">
+                  <div className="mt-1 text-sm font-semibold text-[#244629]">
                     {b.value}
                   </div>
                 </div>
               ))}
             </div>
 
-            <div className="mt-6 text-xs text-[#000000]/70">
+            <div className="mt-6 text-xs text-[#244629]/60">
               * Source: ODEPA / Central Bank
             </div>
           </div>
 
           {/* RIGHT COLUMN */}
           <div className="md:col-span-7">
-            <div
-              className="
-                rounded-3xl
-                bg-white
-                p-6 md:p-10
-                border border-black/10
-                shadow-[0_16px_48px_rgba(0,0,0,0.14)]
-              "
-            >
-              <div className="space-y-6 text-[15px] md:text-lg text-[#000000] leading-relaxed">
+            <div className="rounded-3xl bg-white p-6 md:p-10 border border-[#244629]/15 shadow-[0_16px_48px_rgba(0,0,0,0.12)]">
+              <div className="space-y-6 text-[15px] md:text-lg text-[#244629]/90 leading-relaxed">
                 {t.paragraphs.map((text, index) => (
                   <p key={index}>{text}</p>
                 ))}
               </div>
 
               {/* Divider */}
-              <div className="my-10 h-px w-full bg-black/20" />
+              <div className="my-10 h-px w-full bg-[#244629]/20" />
 
               {/* Highlight */}
-              <div
-                className="
-                  rounded-2xl
-                  bg-[#F3E6D5]
-                  border border-black/10
-                  p-5 md:p-6
-                  shadow-[0_6px_20px_rgba(0,0,0,0.12)]
-                "
-              >
-                <p className="text-sm md:text-base text-[#000000] leading-relaxed font-medium">
+              <div className="rounded-2xl bg-[#F9F3E7] border border-[#244629]/15 p-5 md:p-6 shadow-[0_6px_20px_rgba(0,0,0,0.10)]">
+                <p className="text-sm md:text-base text-[#244629] leading-relaxed font-medium">
                   {language === "es"
                     ? "El problema no es la calidad: es el tiempo. La vida útil define qué mercados son alcanzables."
                     : "The issue isn’t quality: it’s time. Shelf life determines which markets are reachable."}
