@@ -47,10 +47,7 @@ export default function Info() {
       <div className="relative max-w-6xl mx-auto px-6">
         {/* HEADER */}
         <div className="text-center">
-          <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-[#244629]/20 bg-white px-4 py-2 text-xs font-semibold tracking-wide text-[#244629] shadow-[0_6px_18px_rgba(0,0,0,0.10)] animate-fadeInUp">
-            <span className="h-2 w-2 rounded-full bg-[#244629]" />
-            {t.eyebrow}
-          </div>
+         
 
           {/* Title */}
           <h2 className="mt-5 text-3xl md:text-5xl font-semibold tracking-tight text-[#244629] animate-fadeInUp [animation-delay:60ms]">
@@ -71,7 +68,7 @@ export default function Info() {
               className="animate-fadeInUp"
               style={{ animationDelay: `${180 + idx * 80}ms` }}
             >
-              <div className="relative w-full h-[320px] md:h-[420px] rounded-3xl bg-white border border-[#244629]/15 shadow-[0_16px_48px_rgba(0,0,0,0.12)] overflow-hidden">
+              <div className="relative w-full h-[320px] md:h-[420px] rounded-3xl overflow-hidden">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={toSrc(img.src)}
@@ -82,7 +79,7 @@ export default function Info() {
               </div>
 
               {/* Caption */}
-              <figcaption className="mt-3 text-sm text-[#244629]/70 text-center">
+              <figcaption className="mt-3 text-sm text-[#244629] text-center">
                 {img.alt}
               </figcaption>
             </figure>

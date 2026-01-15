@@ -1,71 +1,72 @@
-import { Linkedin, Twitter, Youtube, Instagram } from 'lucide-react';
-import logo from '../imagen/logoBioRoute.png';
+import logo from "../imagen/logoBioRoute.png";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Footer() {
+  const { language } = useLanguage();
   const currentYear = new Date().getFullYear();
 
-  const footerLinks = {
-    programa: [
-      { name: 'Qué es BioRoute', href: '#about' },
-      { name: 'Pilares Estratégicos', href: '#pillars' },
-      { name: 'Equipo', href: '#contact' },
-    ],
-    recursos: [
-      { name: 'Financiamiento', href: '#financing' },
-      { name: 'Ecosistema', href: '#ecosystem' },
-      { name: 'Biblioteca', href: '#resources' },
-    ],
-    legal: [
-      { name: 'Términos y Condiciones', href: '#' },
-      { name: 'Política de Privacidad', href: '#' },
-      { name: 'CORFO', href: 'https://www.corfo.cl' },
-    ],
-  };
+  const content = {
+    en: {
+      tagline: "Bringing Chilean biotechnology to the world.",
+      programTitle: "Program",
+      links: [
+        { name: "What is BioRoute", href: "#about" },
+        { name: "Strategic Pillars", href: "#pillars" },
+      ],
+      rights: `© ${currentYear} BioRoute Chile. All rights reserved.`,
+      builtBy: "Built by",
+      developerName: "CodeXpertDS.com",
+      developerHref: "https://codeXpertDS.com",
+    },
+    es: {
+      tagline: "Impulsando la biotecnología chilena hacia el mundo.",
+      programTitle: "Programa",
+      links: [
+        { name: "Qué es BioRoute", href: "#about" },
+        { name: "Pilares Estratégicos", href: "#pillars" },
+      ],
+      rights: `© ${currentYear} BioRoute Chile. Todos los derechos reservados.`,
+      builtBy: "Desarrollado por",
+      developerName: "CodeXpertDS.com",
+      developerHref: "https://codeXpertDS.com",
+    },
+  } as const;
 
-  const socialLinks = [
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: Youtube, href: '#', label: 'YouTube' },
-    { icon: Instagram, href: '#', label: 'Instagram' },
-  ];
+  const t = content[language];
 
   return (
     <footer className="bg-[#2f4e37] text-white rounded-t-3xl">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-          
-          {/* LOGO + DESCRIPCIÓN + REDES */}
-          <div className="flex flex-col items-start">
-            <div className="flex items-center mb-4">
-              {/* Logo como imagen */}
-              <img src={logo} alt="BioRoute Logo" className="h-32 w-auto bg-white rounded-lg" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+        {/* Top */}
+        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-10">
+          {/* Brand */}
+          <div className="min-w-[260px]">
+            <div className="flex items-center gap-4">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={logo as unknown as string}
+                alt="BioRoute Logo"
+                className="h-16 w-auto rounded-lg bg-white/95 p-2"
+                loading="lazy"
+              />
             </div>
-            <p className="text-white text-sm mb-6 font-medium">
-              Impulsando la biotecnología chilena hacia el mundo
+
+            <p className="mt-4 text-sm text-white/90 font-medium max-w-sm leading-relaxed">
+              {t.tagline}
             </p>
-            <div className="flex space-x-4">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  aria-label={social.label}
-                  className="w-11 h-11 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/40 transition-all text-white"
-                >
-                  <social.icon size={22} />
-                </a>
-              ))}
-            </div>
           </div>
 
-          {/* ENLACES - PROGRAMA */}
-          <div>
-            <h4 className="font-bold text-lg mb-6 text-white">Programa</h4>
+          {/* Links */}
+          <div className="w-full md:w-auto">
+            <h4 className="font-semibold text-base mb-4 text-white">
+              {t.programTitle}
+            </h4>
             <ul className="space-y-3">
-              {footerLinks.programa.map((link) => (
+              {t.links.map((link) => (
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    className="text-white underline hover:text-[#00B894] transition-colors text-sm font-medium"
+                    className="text-sm font-medium text-white/90 hover:text-white underline underline-offset-4 decoration-white/40 hover:decoration-white transition-colors"
                   >
                     {link.name}
                   </a>
@@ -73,52 +74,22 @@ export default function Footer() {
               ))}
             </ul>
           </div>
-
-          {/* ENLACES - RECURSOS */}
-          <div>
-            <h4 className="font-bold text-lg mb-6 text-white">Recursos</h4>
-            <ul className="space-y-3">
-              {footerLinks.recursos.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    className="text-white underline hover:text-[#00B894] transition-colors text-sm font-medium"
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* ENLACES - LEGAL */}
-          <div>
-            <h4 className="font-bold text-lg mb-6 text-white">Legal</h4>
-            <ul className="space-y-3">
-              {footerLinks.legal.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    className="text-white underline hover:text-[#00B894] transition-colors text-sm font-medium"
-                    target={link.href.startsWith('http') ? '_blank' : undefined}
-                    rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
         </div>
 
-        {/* COPYRIGHT */}
-        <div className="border-t border-white/40 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-white text-sm font-medium">
-            © {currentYear} BioRoute Chile - CORFO. Todos los derechos reservados.
-          </p>
-          <p className="text-white text-sm font-medium">
-            Desarrollado para impulsar la biotecnología nacional
+        {/* Bottom */}
+        <div className="mt-10 border-t border-white/25 pt-6 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+          <p className="text-sm text-white/85 font-medium">{t.rights}</p>
+
+          <p className="text-sm text-white/85 font-medium">
+            {t.builtBy}{" "}
+            <a
+              href={t.developerHref}
+              target="_blank"
+              rel="noreferrer"
+              className="text-white underline underline-offset-4 decoration-white/40 hover:decoration-white transition-colors"
+            >
+              {t.developerName}
+            </a>
           </p>
         </div>
       </div>

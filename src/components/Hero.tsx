@@ -49,9 +49,7 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-10 flex min-h-[100svh] flex-col items-center justify-center px-6 text-center animate-fadeInUp">
-        <p className="mb-4 text-sm font-medium tracking-wide text-white/90">
-          {t.badge}
-        </p>
+       
 
         <h1 className="text-balance text-4xl font-semibold tracking-tight text-white md:text-6xl">
           <span className="block">{t.line1}</span>

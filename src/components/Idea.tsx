@@ -51,10 +51,7 @@ export default function Idea() {
           {/* LEFT COLUMN */}
           <div className="md:col-span-5 md:sticky md:top-24">
             {/* Eyebrow */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#244629]/20 bg-white px-4 py-2 text-xs font-semibold tracking-wide text-[#244629] shadow-sm">
-              <span className="h-2 w-2 rounded-full bg-[#244629]" />
-              {t.eyebrow}
-            </div>
+            
 
             {/* Title */}
             <h2 className="mt-5 text-3xl md:text-5xl font-semibold tracking-tight text-[#244629]">
