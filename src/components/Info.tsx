@@ -42,7 +42,7 @@ export default function Info() {
   return (
     <section
       id="info"
-      className="relative py-16 bg-[#F9F3E7] overflow-hidden text-[#244629]"
+      className="relative pt-0 pb-8 bg-[#F9F3E7] overflow-hidden text-[#244629]"
     >
       <div className="relative max-w-6xl mx-auto px-6">
         {/* HEADER */}

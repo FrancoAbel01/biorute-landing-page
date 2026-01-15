@@ -11,7 +11,7 @@ export default function About() {
 
   const content = {
     en: {
-      eyebrow: "Technology",
+     
       title: "Our Solution",
       lead:
         "Anti-ripening peptides that protect fruit quality during long-distance export.",
@@ -31,7 +31,7 @@ export default function About() {
       caption: "Technology comparison and results overview.",
     },
     es: {
-      eyebrow: "Tecnología",
+      
       title: "Nuestra Solución",
       lead:
         "Péptidos antimaduración que protegen la calidad de la fruta en exportaciones de larga distancia.",
@@ -61,7 +61,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative py-16 bg-[#F9F3E7] overflow-hidden text-[#244629]"
+      className="relative pt-0 pb-8 bg-[#F9F3E7] overflow-hidden text-[#244629]"
     >
       <div className="relative max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-12">
@@ -86,7 +86,7 @@ export default function About() {
               {t.highlights.map((h, idx) => (
                 <span
                   key={idx}
-                  className="rounded-full border border-[#244629]/20 bg-white px-4 py-2 text-sm text-[#244629] shadow-[0_6px_18px_rgba(0,0,0,0.10)]"
+                  className="rounded-full  px-4 py-2 text-sm text-[#244629] "
                 >
                   {h.label}
                 </span>
