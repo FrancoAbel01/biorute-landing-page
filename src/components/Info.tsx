@@ -47,39 +47,77 @@ export default function Info() {
       <div className="relative max-w-6xl mx-auto px-6">
         {/* HEADER */}
         <div className="text-center">
-         
-
-          {/* Title */}
-          <h2 className="mt-5 text-3xl md:text-5xl font-semibold tracking-tight text-[#244629] animate-fadeInUp [animation-delay:60ms]">
+          <h2 className="mt-5 text-3xl md:text-5xl font-semibold tracking-tight animate-fadeInUp [animation-delay:60ms]">
             {t.title}
           </h2>
 
-          {/* Description */}
           <p className="mx-auto mt-5 max-w-3xl text-base md:text-lg leading-relaxed text-[#244629]/80 animate-fadeInUp [animation-delay:120ms]">
             {t.description}
           </p>
         </div>
 
         {/* IMAGES GRID */}
-        <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2">
+        <div className="mt-14 grid grid-cols-1 gap-12 md:grid-cols-2">
           {t.images.map((img, idx) => (
             <figure
               key={img.alt}
-              className="animate-fadeInUp"
+              className="
+                group
+                relative
+                animate-fadeInUp
+              "
               style={{ animationDelay: `${180 + idx * 80}ms` }}
             >
-              <div className="relative w-full h-[320px] md:h-[420px] rounded-3xl overflow-hidden">
+              <div
+                className="
+                  relative
+                  w-full
+                  h-[320px]
+                  md:h-[420px]
+                  rounded-3xl
+                  overflow-hidden
+                  transition-transform
+                  duration-300
+                  ease-out
+                  group-hover:scale-[1.03]
+                "
+              >
+                {/* sombra suave integrada al fondo */}
+                <div
+                  className="
+                    absolute
+                    inset-0
+                    rounded-3xl
+                    shadow-[0_18px_45px_rgba(36,70,41,0.28)]
+                    opacity-40
+                    group-hover:opacity-60
+                    transition-opacity
+                    duration-300
+                    pointer-events-none
+                  "
+                />
+
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={toSrc(img.src)}
                   alt={img.alt}
-                  className="absolute inset-0 h-full w-full object-contain p-4"
+                  className="
+                    absolute
+                    inset-0
+                    h-full
+                    w-full
+                    object-contain
+                    p-6
+                    transition-transform
+                    duration-300
+                    ease-out
+                    group-hover:scale-[1.05]
+                  "
                   loading="lazy"
                 />
               </div>
 
-              {/* Caption */}
-              <figcaption className="mt-3 text-sm text-[#244629] text-center">
+              <figcaption className="mt-4 text-sm text-center text-[#244629]">
                 {img.alt}
               </figcaption>
             </figure>
@@ -90,9 +128,16 @@ export default function Info() {
       {/* Animación */}
       <style>{`
         @keyframes fadeInUp {
-          from { opacity: 0; transform: translateY(12px); }
-          to { opacity: 1; transform: translateY(0); }
+          from {
+            opacity: 0;
+            transform: translateY(12px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
+
         .animate-fadeInUp {
           animation: fadeInUp 650ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
         }

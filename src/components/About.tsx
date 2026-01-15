@@ -11,7 +11,7 @@ export default function About() {
 
   const content = {
     en: {
-     
+
       title: "Our Solution",
       lead:
         "Anti-ripening peptides that protect fruit quality during long-distance export.",
@@ -31,7 +31,7 @@ export default function About() {
       caption: "Technology comparison and results overview.",
     },
     es: {
-      
+
       title: "Nuestra Solución",
       lead:
         "Péptidos antimaduración que protegen la calidad de la fruta en exportaciones de larga distancia.",
@@ -69,7 +69,7 @@ export default function About() {
           {/* LEFT: CONTENT */}
           <div className="md:col-span-6">
             {/* Eyebrow */}
-           
+
 
             {/* Title */}
             <h2 className="mt-5 text-3xl md:text-5xl font-semibold tracking-tight text-[#244629] animate-fadeInUp [animation-delay:60ms]">
@@ -86,12 +86,28 @@ export default function About() {
               {t.highlights.map((h, idx) => (
                 <span
                   key={idx}
-                  className="rounded-full  px-4 py-2 text-sm text-[#244629] "
+                  className="
+        rounded-full
+        px-4
+        py-2
+        text-sm
+        text-[#244629]
+        font-bold
+        transition-all
+        duration-300
+        ease-out
+        hover:bg-[#244629]/15
+        hover:text-[#1b3620]
+        hover:scale-105
+        hover:shadow-[0_4px_14px_rgba(36,70,41,0.25)]
+        cursor-default
+      "
                 >
                   {h.label}
                 </span>
               ))}
             </div>
+
 
             {/* Paragraphs */}
             <div className="mt-8 space-y-6 text-[15px] md:text-lg text-[#244629]/90 leading-relaxed animate-fadeInUp [animation-delay:240ms]">
@@ -104,18 +120,18 @@ export default function About() {
           {/* RIGHT: IMAGE */}
           <div className="md:col-span-6 animate-fadeInUp [animation-delay:140ms]">
             {/* <div className="w-full rounded-3xl bg-white border border-[#244629]/15 shadow-[0_16px_48px_rgba(0,0,0,0.12)] p-4"> */}
-              <div className="relative w-full h-[320px] sm:h-[380px] md:h-[520px]">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={imgSrc}
-                  alt={t.image.alt}
-                  className="absolute inset-0 h-full w-full object-contain"
-                  loading="lazy"
-                />
-              </div>
+            <div className="relative w-full h-[320px] sm:h-[380px] md:h-[520px]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={imgSrc}
+                alt={t.image.alt}
+                className="absolute inset-0 h-full w-full object-contain"
+                loading="lazy"
+              />
+            </div>
 
-              {/* Caption */}
-              {/* <p className="mt-3 text-sm text-center text-[#244629]/70">
+            {/* Caption */}
+            {/* <p className="mt-3 text-sm text-center text-[#244629]/70">
                 {t.caption}
               </p> */}
             {/* </div> */}

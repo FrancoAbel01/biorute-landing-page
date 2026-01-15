@@ -121,7 +121,7 @@ export default function Idea() {
 
   const content = {
     en: {
-    
+
       title: "The Chilean Agro-Export Challenge",
       lead:
         "Chile is a global leader in fresh fruit exports, yet long-distance logistics still limit access to the most profitable markets.",
@@ -137,7 +137,7 @@ export default function Idea() {
       ],
     },
     es: {
-      
+
       title: "El Desafío de la Agroexportación Chilena",
       lead:
         "Chile es líder global en exportación de fruta fresca, pero la logística de larga distancia aún limita el acceso a los mercados más rentables.",
@@ -167,14 +167,14 @@ export default function Idea() {
       <div className="relative max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-12 items-start">
           {/* LEFT COLUMN */}
-          <div className="md:col-span-5 md:sticky md:top-24">
+          <div className="md:col-span-5 md:sticky ">
             {/* Eyebrow */}
-            
+
 
             {/* Title */}
-            <h2 className="mt-5 text-3xl md:text-5xl font-semibold tracking-tight text-[#244629]">
+            <h1 className="mt-8 text-5xl md:text-7xl font-semibold tracking-tight text-[#244629]">
               {t.title}
-            </h2>
+            </h1>
 
             {/* Lead */}
             <p className="mt-5 text-base md:text-lg leading-relaxed text-[#244629]/80 max-w-xl">
@@ -214,11 +214,32 @@ export default function Idea() {
                       transitionDelay: `${i * 140}ms`,
                     }}
                   >
-                    <div className="text-xs text-[#244629]/70">{b.label}</div>
+                    <div className="text-xs text-[#244629]">{b.label}</div>
 
-                    <div className="mt-1 text-sm font-semibold text-[#244629] tabular-nums">
+                    <div
+                      className="
+    mt-1
+    inline-block
+    px-2
+    py-1
+    text-lg
+    font-bold
+    text-[#244629]
+    tabular-nums
+    rounded-md
+    transition-all
+    duration-300
+    ease-out
+    hover:bg-[#244629]/10
+    hover:text-[#1b3620]
+    hover:scale-[1.08]
+    hover:shadow-md
+    cursor-default
+  "
+                    >
                       {rendered}
                     </div>
+
                   </div>
                 );
               })}
