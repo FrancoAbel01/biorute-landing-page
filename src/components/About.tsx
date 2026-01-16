@@ -53,7 +53,7 @@ export default function About() {
               {t.title}
             </h2>
 
-            <p className="mt-4 text-base md:text-lg leading-relaxed text-[#244629]/80 max-w-3xl animate-fadeInUp [animation-delay:120ms]">
+            <p className="mt-4 text-base md:text-lg leading-relaxed text-[#244629] max-w-3xl animate-fadeInUp [animation-delay:120ms]">
               {t.lead}
             </p>
 
@@ -75,7 +75,7 @@ export default function About() {
                       text-[#244629]
                       bg-white/25
                       border
-                      border-[#244629]/15
+                      border-[#244629]
                       backdrop-blur-sm
                       transition-all
                       duration-300
@@ -94,17 +94,14 @@ export default function About() {
             </div>
 
             {/* Paragraphs */}
-            <div className="mt-7 space-y-5 text-[15px] md:text-lg text-[#244629]/90 leading-relaxed animate-fadeInUp [animation-delay:240ms]">
+            <div className="mt-7 space-y-5 text-[15px] md:text-lg text-[#244629] leading-relaxed animate-fadeInUp [animation-delay:240ms]">
               {t.paragraphs.map((p, idx) => (
                 <p key={idx}>{p}</p>
               ))}
             </div>
           </div>
 
-          {/* ✅ TABLA ABAJO (misma columna) */}
-          <div className="animate-fadeInUp [animation-delay:140ms]">
-            <EfficacyTable />
-          </div>
+          
         </div>
       </div>
 

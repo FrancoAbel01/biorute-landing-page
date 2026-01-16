@@ -1,10 +1,22 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { useLanguage } from "../context/LanguageContext";
 
-// Imágenes
-import cereza from "../imagen/cereza.png";
-import palta from "../imagen/palta.png";
+// Imagen única
+import cereza from "../imagen/imagenCompleta.png";
+
+import EfficacyTable from "./EfficacyTable";
+
+/* ---------- helpers ---------- */
+function clamp(n: number, min: number, max: number) {
+  return Math.max(min, Math.min(max, n));
+}
+
+// easeOutCubic
+function easeOutCubic(t: number) {
+  return 1 - Math.pow(1 - t, 3);
+}
 
 export default function Info() {
   const { language } = useLanguage();
@@ -14,19 +26,11 @@ export default function Info() {
       title: "Ethylock (Avocado) | CherryStop (Cherry)",
       description:
         "It is a liquid solution applied directly into the wash tanks at processing plants. It creates an extra protective layer from which the peptides diffuse.",
-      images: [
-        { src: palta, alt: "Ethylock", subtitle: "Avocado" },
-        { src: cereza, alt: "CherryStop", subtitle: "Cherry" },
-      ],
     },
     es: {
       title: "Ethylock (Palta) | CherryStop (Cereza)",
       description:
         "Es una solución líquida que se aplica directamente en los tanques de lavado de las plantas de proceso. Crea una capa protectora extra desde la cual los péptidos se difunden.",
-      images: [
-        { src: palta, alt: "Ethylock", subtitle: "Palta" },
-        { src: cereza, alt: "CherryStop", subtitle: "Cereza" },
-      ],
     },
   } as const;
 
@@ -35,80 +39,158 @@ export default function Info() {
   const toSrc = (img: unknown) =>
     (img as { src: string })?.src ?? (img as string);
 
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const sceneRef = useRef<HTMLDivElement | null>(null);
+  const stickyWrapRef = useRef<HTMLDivElement | null>(null);
+  const imgRef = useRef<HTMLImageElement | null>(null);
+  const bottomPanelRef = useRef<HTMLDivElement | null>(null);
+
+  /* ---------- PARALLAX “RELATIVO” + PANEL OVER ---------- */
+  useEffect(() => {
+    let raf = 0;
+
+    const update = () => {
+      const scene = sceneRef.current;
+      const stickyWrap = stickyWrapRef.current;
+      const img = imgRef.current;
+      const panel = bottomPanelRef.current;
+      if (!scene || !stickyWrap || !img || !panel) return;
+
+      const vh = window.innerHeight || 1;
+
+      // =====================================================
+      // 1) IMAGEN: parallax relativo al viewport (se nota MÁS)
+      // =====================================================
+      // Usamos la posición del sticky wrapper en el viewport
+      const sr = stickyWrap.getBoundingClientRect();
+
+      // pImg: 0 cuando el wrapper está abajo, 1 cuando ya pasó
+      const pImg = clamp((vh - sr.top) / (vh + sr.height), 0, 1);
+
+      // Centro -> -1..1 (sensación más “relativa”)
+      const rel = (pImg - 0.5) * 2;
+
+      // ✅ Ajustes que SÍ se sienten:
+      // - La imagen se mueve “lento” pero con más recorrido
+      const IMG_PARALLAX = 140; // <-- sube/baja si quieres más/menos (recomendado 120-180)
+      const yImg = rel * (IMG_PARALLAX * 0.55); // 55% del recorrido (plano lento)
+      const tilt = rel * -2.6; // más tilt (sutil pero visible)
+      const scale = 1.1;
+
+      img.style.transform = `translate3d(0, ${yImg}px, 0) scale(${scale}) rotateX(${tilt}deg)`;
+
+      // =====================================================
+      // 2) PANEL: se desliza sobre la imagen al entrar
+      // =====================================================
+      // Progreso del panel respecto al viewport (cuando empieza a aparecer)
+      const pr = panel.getBoundingClientRect();
+
+      // pPanel: 0 cuando está fuera abajo, 1 cuando ya está “asentado”
+      const pPanel = clamp((vh - pr.top) / (vh * 0.9), 0, 1);
+      const e = easeOutCubic(pPanel);
+
+      // ✅ Panel se mueve MÁS (capa superior)
+      const PANEL_LIFT = 140; // <-- sube/baja si quieres que “invada” más (100-180)
+      const yPanel = (1 - e) * PANEL_LIFT;
+
+      panel.style.transform = `translate3d(0, ${yPanel}px, 0)`;
+    };
+
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
   return (
-    <section id="info"  className="
-        relative z-20
-        bg-[#F9F3E7] text-[#244629]
-        rounded-b-xl overflow-hidden
-        pb-[5px] mb-[-10px]
-      ">
-      <div className="max-w-6xl mx-auto px-6 pt-20 pb-16">
-        {/* TEXTO */}
-        <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-5xl font-semibold tracking-tight">
-            {t.title}
-          </h2>
+    <section
+      ref={sectionRef}
+      id="info"
+      className="relative bg-[#F9F3E7] text-[#244629] overflow-hidden"
+    >
+      {/* ===================== TEXTO ARRIBA (invade la imagen) ===================== */}
+      <div className="relative z-20 -mb-16 md:-mb-24">
+        <div className="bg-[#F9F3E7] rounded-b-xl pt-20 pb-10">
+          <div className="max-w-6xl mx-auto px-6 text-center">
+            <h2 className="text-3xl md:text-5xl font-semibold tracking-tight">
+              {t.title}
+            </h2>
 
-          <p className="mt-5 max-w-3xl mx-auto text-base md:text-lg leading-relaxed text-[#244629]/80">
-            {t.description}
-          </p>
-        </div>
-
-        {/* BANNER */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {t.images.map((img) => (
-            <div
-              key={img.alt}
-              className="
-                group
-                relative
-                w-full
-                h-[260px]
-                md:h-[340px]
-                rounded-3xl
-                overflow-hidden
-                shadow-[0_18px_45px_rgba(36,70,41,0.18)]
-              "
-            >
-              {/* Imagen */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={toSrc(img.src)}
-                alt={`${img.alt} – ${img.subtitle}`}
-                className="
-                  absolute inset-0
-                  w-full h-full
-                  object-cover
-                  transition-transform duration-500 ease-out
-                  group-hover:scale-[1.04]
-                "
-                loading="lazy"
-              />
-
-              {/* Overlay para lectura */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent" />
-
-              {/* Textos encima */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-7">
-                <div className="inline-flex items-center gap-2 rounded-full bg-white/20 px-3 py-1 text-xs text-white backdrop-blur">
-                  {language === "es" ? "Producto" : "Product"}
-                </div>
-
-                <div className="mt-3 text-2xl md:text-3xl font-semibold text-white tracking-tight">
-                  {img.alt}
-                </div>
-
-                <div className="mt-1 text-sm md:text-base text-white/90">
-                  {img.subtitle}
-                </div>
-              </div>
-
-              {/* borde suave */}
-              <div className="absolute inset-0 rounded-3xl ring-1 ring-white/20 pointer-events-none" />
-            </div>
-          ))}
+            <p className="mt-6 max-w-3xl mx-auto text-base md:text-lg leading-relaxed text-[#244629]/80">
+              {t.description}
+            </p>
+          </div>
         </div>
       </div>
+
+      {/* ===================== IMAGEN (ESCENA CON EFECTO) ===================== */}
+      <div ref={sceneRef} className="relative h-[860px] md:h-[1040px]">
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div
+            ref={stickyWrapRef}
+            className="sticky top-0 h-[660px] md:h-[820px] overflow-hidden"
+          >
+            <div
+              className="absolute inset-0 rounded-b-xl overflow-hidden"
+              style={{ perspective: "1200px", transformStyle: "preserve-3d" }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                ref={imgRef}
+                src={toSrc(cereza)}
+                alt={language === "es" ? "Palta y Cereza" : "Avocado and Cherry"}
+                className="absolute inset-0 w-full h-full object-cover"
+                style={{
+                  willChange: "transform",
+                  transform: "translate3d(0, 0px, 0) scale(1.1)",
+                  transformOrigin: "center",
+                }}
+                loading="lazy"
+                draggable={false}
+              />
+
+              <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/10 to-transparent" />
+              <div className="absolute inset-0 bg-[#244629]/[0.02]" />
+            </div>
+          </div>
+        </div>
+
+        <div className="absolute inset-x-0 bottom-0 h-[280px] bg-gradient-to-b from-transparent to-[#F9F3E7]" />
+      </div>
+
+      {/* ===================== TABLA (invade + se mueve encima) ===================== */}
+      <div className="relative z-20 -mt-52 md:-mt-64">
+        <div
+          ref={bottomPanelRef}
+          className="
+            will-change-transform
+            bg-[#F9F3E7]
+            rounded-t-3xl
+            shadow-[0_-18px_45px_rgba(0,0,0,0.14)]
+            border-t border-[#244629]/10
+            pt-14 pb-24
+          "
+          style={{ transform: "translate3d(0, 0px, 0)" }}
+        >
+          <div className="flex justify-center px-6">
+            <div className="w-full max-w-5xl">
+              <EfficacyTable />
+            </div>
+          </div>
+        </div>
+      </div>
+
+    
     </section>
   );
 }

@@ -202,10 +202,10 @@ export default function Idea() {
   const baseTop = 30;
 
   const startH = Math.max(70, endH - delta); // antes 70, ahora se ajusta si endH crece
-  const top = baseTop - baseTop * p;         // 30svh -> 0
-  const h = startH + (endH - startH) * p;    // startH -> endH
-  const w = 92 + 8 * p;                      // 92vw -> 100vw
-  const radius = Math.round(28 * (1 - p));   // 28px -> 0
+  const top = baseTop - baseTop * p; // 30svh -> 0
+  const h = startH + (endH - startH) * p; // startH -> endH
+  const w = 92 + 8 * p; // 92vw -> 100vw
+  const radius = Math.round(28 * (1 - p)); // 28px -> 0
   const statsInView = p > 0.25;
 
   return (
@@ -246,16 +246,9 @@ export default function Idea() {
                     </h1>
                     <div className="my-10 h-px w-full bg-[#244629]/20 reopen" />
 
-                    <p className="text-sm md:text-base text-[#244629] leading-relaxed font-medium">
-                      {language === "es"
-                        ? "El problema no es la calidad: es el tiempo. La vida útil define qué mercados son alcanzables."
-                        : "The issue isn’t quality: it’s time. Shelf life determines which markets are reachable."}
-                    </p>
-                    <p className="mt-5 text-base md:text-lg leading-relaxed text-[#244629]/80 max-w-xl">
+                    <p className="text-base md:text-lg leading-relaxed text-[#244629]/80 max-w-xl">
                       {t.lead}
                     </p>
-
-
                   </div>
 
                   {/* RIGHT */}
@@ -266,51 +259,56 @@ export default function Idea() {
                       ))}
                     </div>
 
-                    <div className="mt-7 grid grid-cols-1 sm:grid-cols-3 gap-4">
-                      {t.bullets.map((b, i) => {
-                        const meta = getAnimatedMeta(b.value);
-                        const duration = meta.type === "percent" ? 1400 : 1200;
-                        const animated = useCountUp(meta.end, statsInView, duration);
-
-                        const rendered =
-                          language === "es"
-                            ? meta.render(animated)
-                            : meta.renderEn(animated);
-
-                        return (
-                          <div
-                            key={i}
-                            className="rounded-2xl px-4 py-4 transition-all duration-700 ease-out hover:-translate-y-[2px]"
-                            style={{
-                              transform: statsInView ? "translateY(0)" : "translateY(10px)",
-                              opacity: statsInView ? 1 : 0,
-                              transitionDelay: `${i * 140}ms`,
-                            }}
-                          >
-                            <div className="text-xs text-[#244629]">{b.label}</div>
-                            <div className="mt-1 inline-block px-2 py-1 text-lg font-bold text-[#244629] tabular-nums rounded-md">
-                              {rendered}
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-
-                    {/* aire final (no scroll, solo espacio) */}
-                    <div className="h-6 md:h-0" />
+                    <p className="text-sm md:text-base text-[#244629] leading-relaxed font-medium mt-5">
+                      {language === "es"
+                        ? "El problema no es la calidad: es el tiempo. La vida útil define qué mercados son alcanzables."
+                        : "The issue isn’t quality: it’s time. Shelf life determines which markets are reachable."}
+                    </p>
                   </div>
                 </div>
-              </div>
 
+                {/* ✅ BULLETS GRANDES CENTRADAS */}
+                <div className="mt-16 flex justify-center">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl w-full text-center">
+                    {t.bullets.map((b, i) => {
+                      const meta = getAnimatedMeta(b.value);
+                      const duration = meta.type === "percent" ? 1400 : 1200;
+                      const animated = useCountUp(meta.end, statsInView, duration);
+
+                      const rendered =
+                        language === "es"
+                          ? meta.render(animated)
+                          : meta.renderEn(animated);
+
+                      return (
+                        <div
+                          key={i}
+                          className="rounded-3xl px-6 py-8 transition-all duration-700 ease-out"
+                          style={{
+                            transform: statsInView ? "translateY(0)" : "translateY(14px)",
+                            opacity: statsInView ? 1 : 0,
+                            transitionDelay: `${i * 160}ms`,
+                          }}
+                        >
+                          <div className="text-sm uppercase tracking-wide text-[#244629]/70 mb-2">
+                            {b.label}
+                          </div>
+
+                          <div className="text-4xl md:text-5xl font-extrabold text-[#244629] tabular-nums">
+                            {rendered}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+                {/* fin bullets */}
+              </div>
               {/* fin contentRef */}
             </div>
-
           </div>
         </div>
       </div>
-
-
-
     </section>
   );
 }
