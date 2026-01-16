@@ -134,11 +134,7 @@ export default function EfficacyTable() {
                       `}
                     >
                       {c.label[language]}
-                      {/* {c.key === "ethylock" && (
-                        <span className="text-[11px] font-bold px-2 py-1 rounded-full bg-emerald-700/15 text-emerald-900">
-                          {language === "es" ? "Destacado" : "Highlighted"}
-                        </span>
-                      )} */}
+                    
                     </span>
                   </th>
                 ))}

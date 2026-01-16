@@ -108,7 +108,6 @@ export default function Idea() {
           paragraphs: [
             "Our fruit stands out globally for its quality, flavor, and food safety. However, Chile’s geographical location creates a major challenge: the most profitable markets are far away, while nearby markets are highly saturated by other exporters.",
             "Dehydration, decay, and over-ripening are the main issues affecting fruit during long-distance transport. Although exporters have spent more than 15 years improving processes, fungicide dosages, and packaging, there is still significant uncaptured value due to the product’s short shelf life.",
-            // "Fifty days to reach India and forty days to arrive at supermarkets in China are just two examples of barriers that have yet to be overcome for avocados and cherries, respectively.",
           ],
         },
         es: {
@@ -123,7 +122,6 @@ export default function Idea() {
           paragraphs: [
             "Nuestra fruta destaca a nivel global por su calidad, sabor y seguridad alimentaria. Sin embargo, la ubicación geográfica de Chile representa una desventaja: los mercados más rentables se encuentran a gran distancia, mientras que los mercados cercanos están saturados por otros exportadores.",
             "La deshidratación, la descomposición y la sobremaduración son los principales problemas que se producen durante el transporte de larga distancia. Si bien los exportadores han trabajado durante más de 15 años en mejorar procesos, dosis de fungicidas y envases, aún existe un valor significativo no capturado debido a la corta vida útil del producto.",
-            // "Cincuenta días para llegar a India y cuarenta días para alcanzar supermercados en China son solo dos ejemplos de barreras que aún no han sido superadas para las paltas y las cerezas, respectivamente.",
           ],
         },
       }) as const,
@@ -148,12 +146,9 @@ export default function Idea() {
       const vh = window.innerHeight || 1;
       const px = el.getBoundingClientRect().height;
 
-      // margen extra para que nunca quede “justo” (stats + paddings + safe areas)
       const extraPx = 32;
-
       const neededSvh = ((px + extraPx) / vh) * 100;
 
-      // mínimo 100svh como antes, pero si necesita más, lo aumentamos
       const nextEnd = Math.max(100, Math.ceil(neededSvh));
       setEndH(nextEnd);
     };
@@ -201,11 +196,11 @@ export default function Idea() {
   const delta = 30;
   const baseTop = 30;
 
-  const startH = Math.max(70, endH - delta); // antes 70, ahora se ajusta si endH crece
-  const top = baseTop - baseTop * p; // 30svh -> 0
-  const h = startH + (endH - startH) * p; // startH -> endH
-  const w = 92 + 8 * p; // 92vw -> 100vw
-  const radius = Math.round(28 * (1 - p)); // 28px -> 0
+  const startH = Math.max(70, endH - delta);
+  const top = baseTop - baseTop * p;
+  const h = startH + (endH - startH) * p;
+  const w = 92 + 8 * p;
+  const radius = Math.round(28 * (1 - p));
   const statsInView = p > 0.25;
 
   return (
@@ -237,7 +232,10 @@ export default function Idea() {
           >
             <div className="h-full w-full text-[#244629]">
               {/* ✅ ESTE wrapper se mide para calcular endH */}
-              <div ref={contentRef} className="max-w-6xl mx-auto px-6 py-10 md:py-14">
+              <div
+                ref={contentRef}
+                className="max-w-6xl mx-auto px-6 py-10 md:py-14"
+              >
                 <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-12 items-start">
                   {/* LEFT */}
                   <div className="md:col-span-5 md:sticky md:top-16">
@@ -246,13 +244,14 @@ export default function Idea() {
                     </h1>
                     <div className="my-10 h-px w-full bg-[#244629]/20 reopen" />
 
-                    <p className="text-base md:text-lg leading-relaxed text-[#244629]/80 max-w-xl">
-                      {t.lead}
-                    </p>
+
                   </div>
 
                   {/* RIGHT */}
                   <div className="md:col-span-7">
+                    <p className="text-base md:text-lg leading-relaxed text-[#244629]/80 max-w-xl">
+                      {t.lead}
+                    </p>
                     <div className="space-y-6 text-[15px] md:text-lg text-[#244629] leading-relaxed">
                       {t.paragraphs.map((text, index) => (
                         <p key={index}>{text}</p>
@@ -264,44 +263,47 @@ export default function Idea() {
                         ? "El problema no es la calidad: es el tiempo. La vida útil define qué mercados son alcanzables."
                         : "The issue isn’t quality: it’s time. Shelf life determines which markets are reachable."}
                     </p>
+                    <div className="mt-16 flex">
+                      <div className="flex flex-col gap-8 max-w-3xl w-full ">
+                        {t.bullets.map((b, i) => {
+                          const meta = getAnimatedMeta(b.value);
+                          const duration = meta.type === "percent" ? 1400 : 1200;
+                          const animated = useCountUp(meta.end, statsInView, duration);
+
+                          const rendered =
+                            language === "es"
+                              ? meta.render(animated)
+                              : meta.renderEn(animated);
+
+                          return (
+                            <div
+                              key={i}
+                              className="rounded-3xl px-6 py-8 transition-all duration-700 ease-out"
+                              style={{
+                                transform: statsInView
+                                  ? "translateY(0)"
+                                  : "translateY(14px)",
+                                opacity: statsInView ? 1 : 0,
+                                transitionDelay: `${i * 160}ms`,
+                              }}
+                            >
+                              <div className="text-sm uppercase tracking-wide text-[#244629] ">
+                                {b.label}
+                              </div>
+
+                              <div className="text-4xl md:text-5xl font-extrabold text-[#244629] tabular-nums">
+                                {rendered}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                {/* ✅ BULLETS GRANDES CENTRADAS */}
-                <div className="mt-16 flex justify-center">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl w-full text-center">
-                    {t.bullets.map((b, i) => {
-                      const meta = getAnimatedMeta(b.value);
-                      const duration = meta.type === "percent" ? 1400 : 1200;
-                      const animated = useCountUp(meta.end, statsInView, duration);
+                {/* ✅ BULLETS GRANDES CENTRADAS (UNA ABAJO DE OTRA) */}
 
-                      const rendered =
-                        language === "es"
-                          ? meta.render(animated)
-                          : meta.renderEn(animated);
-
-                      return (
-                        <div
-                          key={i}
-                          className="rounded-3xl px-6 py-8 transition-all duration-700 ease-out"
-                          style={{
-                            transform: statsInView ? "translateY(0)" : "translateY(14px)",
-                            opacity: statsInView ? 1 : 0,
-                            transitionDelay: `${i * 160}ms`,
-                          }}
-                        >
-                          <div className="text-sm uppercase tracking-wide text-[#244629]/70 mb-2">
-                            {b.label}
-                          </div>
-
-                          <div className="text-4xl md:text-5xl font-extrabold text-[#244629] tabular-nums">
-                            {rendered}
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
                 {/* fin bullets */}
               </div>
               {/* fin contentRef */}
