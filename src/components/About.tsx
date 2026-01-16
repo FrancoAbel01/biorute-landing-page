@@ -1,142 +1,110 @@
 "use client";
 
 import { useLanguage } from "../context/LanguageContext";
-
-// 👉 cambia estas rutas por tus imágenes reales
-import aboutEn from "../imagen/english_table.png";
-import aboutEs from "../imagen/español_tabla.png";
+import EfficacyTable from "./EfficacyTable";
 
 export default function About() {
   const { language } = useLanguage();
 
   const content = {
     en: {
-
       title: "Our Solution",
       lead:
         "Anti-ripening peptides that protect fruit quality during long-distance export.",
       paragraphs: [
         "Our solution uses anti-ripening peptides that provide antioxidant, anti-ethylene, and anti-dehydration protection. This technology maintains the quality and nutritional integrity of the fruit for extended periods, ensuring greener pedicels, firmer avocados, and redder cherries.",
-        "As a result, exporters can access destinations that are currently considered unreachable (e.g., the avocado market), securing a comparative advantage that increases profit margins.",
+        // "As a result, exporters can access destinations that are currently considered unreachable (e.g., the avocado market), securing a comparative advantage that increases profit margins.",
       ],
       highlights: [
         { label: "Antioxidant protection" },
         { label: "Anti-ethylene action" },
         { label: "Anti-dehydration barrier" },
       ],
-      image: {
-        src: aboutEn,
-        alt: "Anti-ripening peptide technology – English",
-      },
-      caption: "Technology comparison and results overview.",
     },
     es: {
-
       title: "Nuestra Solución",
       lead:
         "Péptidos antimaduración que protegen la calidad de la fruta en exportaciones de larga distancia.",
       paragraphs: [
         "Nuestra solución utiliza péptidos antimaduración que proporcionan protección antioxidante, anti-etileno y antideshidratante. Esta tecnología mantiene la calidad e integridad nutricional de la fruta por períodos prolongados, asegurando pedúnculos más verdes, paltas más firmes y cerezas más rojas.",
-        "En consecuencia, los exportadores pueden acceder a destinos que actualmente se consideran inalcanzables (ej.: el mercado de la palta), asegurando una ventaja comparativa que incrementa los márgenes de utilidad.",
+        // "En consecuencia, los exportadores pueden acceder a destinos que actualmente se consideran inalcanzables (ej.: el mercado de la palta), asegurando una ventaja comparativa que incrementa los márgenes de utilidad.",
       ],
       highlights: [
         { label: "Protección antioxidante" },
         { label: "Acción anti-etileno" },
         { label: "Barrera antideshidratante" },
       ],
-      image: {
-        src: aboutEs,
-        alt: "Tecnología de péptidos antimaduración – Español",
-      },
-      caption: "Comparación y resultados de la tecnología aplicada.",
     },
   } as const;
 
   const t = content[language];
 
-  const imgSrc =
-    (t.image.src as unknown as { src: string })?.src ??
-    (t.image.src as unknown as string);
-
   return (
     <section
       id="about"
-      className="relative pt-0 pb-8 bg-[#F9F3E7] overflow-hidden text-[#244629]"
+      className="relative pt-0 pb-10 bg-[#F9F3E7] overflow-hidden text-[#244629]"
     >
       <div className="relative max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-12">
-
-          {/* LEFT: CONTENT */}
-          <div className="md:col-span-6">
-            {/* Eyebrow */}
-
-
-            {/* Title */}
-            <h2 className="mt-5 text-3xl md:text-5xl font-semibold tracking-tight text-[#244629] animate-fadeInUp [animation-delay:60ms]">
+        {/* ✅ TODO EN UNA COLUMNA */}
+        <div className="flex flex-col gap-10">
+          {/* HEADER + TEXT */}
+          <div>
+            <h2 className="mt-2 text-3xl md:text-5xl font-semibold tracking-tight text-[#244629] animate-fadeInUp [animation-delay:60ms]">
               {t.title}
             </h2>
 
-            {/* Lead */}
-            <p className="mt-4 text-base md:text-lg leading-relaxed text-[#244629]/80 max-w-xl animate-fadeInUp [animation-delay:120ms]">
+            <p className="mt-4 text-base md:text-lg leading-relaxed text-[#244629]/80 max-w-3xl animate-fadeInUp [animation-delay:120ms]">
               {t.lead}
             </p>
 
-            {/* Highlights */}
-            <div className="mt-7 flex flex-wrap gap-3 animate-fadeInUp [animation-delay:180ms]">
-              {t.highlights.map((h, idx) => (
-                <span
-                  key={idx}
-                  className="
-        rounded-full
-        px-4
-        py-2
-        text-sm
-        text-[#244629]
-        font-bold
-        transition-all
-        duration-300
-        ease-out
-        hover:bg-[#244629]/15
-        hover:text-[#1b3620]
-        hover:scale-105
-        hover:shadow-[0_4px_14px_rgba(36,70,41,0.25)]
-        cursor-default
-      "
-                >
-                  {h.label}
-                </span>
-              ))}
+            {/* ✅ Highlights SIN SCROLL: grid 2 cols en móvil, 3 cols en desktop */}
+            <div className="mt-6 animate-fadeInUp [animation-delay:180ms]">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                {t.highlights.map((h, idx) => (
+                  <span
+                    key={idx}
+                    className="
+                      w-full
+                      text-center
+                      rounded-full
+                      px-3
+                      py-2
+                      text-[13px]
+                      md:text-sm
+                      font-bold
+                      text-[#244629]
+                      bg-white/25
+                      border
+                      border-[#244629]/15
+                      backdrop-blur-sm
+                      transition-all
+                      duration-300
+                      ease-out
+                      hover:bg-[#244629]/12
+                      hover:text-[#1b3620]
+                      hover:scale-[1.02]
+                      hover:shadow-[0_8px_18px_rgba(36,70,41,0.18)]
+                      cursor-default
+                    "
+                  >
+                    {h.label}
+                  </span>
+                ))}
+              </div>
             </div>
 
-
             {/* Paragraphs */}
-            <div className="mt-8 space-y-6 text-[15px] md:text-lg text-[#244629]/90 leading-relaxed animate-fadeInUp [animation-delay:240ms]">
+            <div className="mt-7 space-y-5 text-[15px] md:text-lg text-[#244629]/90 leading-relaxed animate-fadeInUp [animation-delay:240ms]">
               {t.paragraphs.map((p, idx) => (
                 <p key={idx}>{p}</p>
               ))}
             </div>
           </div>
 
-          {/* RIGHT: IMAGE */}
-          <div className="md:col-span-6 animate-fadeInUp [animation-delay:140ms]">
-            {/* <div className="w-full rounded-3xl bg-white border border-[#244629]/15 shadow-[0_16px_48px_rgba(0,0,0,0.12)] p-4"> */}
-            <div className="relative w-full h-[320px] sm:h-[380px] md:h-[520px]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={imgSrc}
-                alt={t.image.alt}
-                className="absolute inset-0 h-full w-full object-contain"
-                loading="lazy"
-              />
-            </div>
-
-            {/* Caption */}
-            {/* <p className="mt-3 text-sm text-center text-[#244629]/70">
-                {t.caption}
-              </p> */}
-            {/* </div> */}
+          {/* ✅ TABLA ABAJO (misma columna) */}
+          <div className="animate-fadeInUp [animation-delay:140ms]">
+            <EfficacyTable />
           </div>
-
         </div>
       </div>
 
