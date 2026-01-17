@@ -249,10 +249,11 @@ export default function Idea() {
 
                   {/* RIGHT */}
                   <div className="md:col-span-7">
-                    <p className="text-base md:text-lg leading-relaxed text-[#244629]/80 max-w-xl">
+                    
+                    <p className="text-base md:text-lg leading-relaxed text-[#244629] pb-4 space-y-6">
                       {t.lead}
                     </p>
-                    <div className="space-y-6 text-[15px] md:text-lg text-[#244629] leading-relaxed">
+                    <div className="space-y-6  md:text-lg text-[#244629]/80 leading-relaxed">
                       {t.paragraphs.map((text, index) => (
                         <p key={index}>{text}</p>
                       ))}
@@ -278,7 +279,7 @@ export default function Idea() {
                           return (
                             <div
                               key={i}
-                              className="rounded-3xl px-6 py-8 transition-all duration-700 ease-out"
+                              className="rounded-3xl px-2 py-2 transition-all duration-700 ease-out"
                               style={{
                                 transform: statsInView
                                   ? "translateY(0)"

@@ -48,11 +48,20 @@ export default function About() {
             {t.title}
           </h2>
 
-          <p className="mt-4 text-base md:text-lg leading-relaxed text-[#244629]/85">
+          <p className="mt-4 text-base md:text-lg leading-relaxed text-[#244629]">
             {t.lead}
           </p>
 
           {/* ✅ HIGHLIGHTS SIMPLES Y UNIDOS */}
+          
+
+          {/* Paragraphs */}
+          <div className="mt-6 space-y-5 text-[15px] md:text-lg leading-relaxed text-[#244629]/80">
+            {t.paragraphs.map((p, idx) => (
+              <p key={idx}>{p}</p>
+            ))}
+          </div>
+
           <div className="mt-5">
             <div className="flex flex-wrap gap-2">
               {t.highlights.map((h, idx) => (
@@ -71,13 +80,6 @@ export default function About() {
                 </span>
               ))}
             </div>
-          </div>
-
-          {/* Paragraphs */}
-          <div className="mt-6 space-y-5 text-[15px] md:text-lg leading-relaxed text-[#244629]/90">
-            {t.paragraphs.map((p, idx) => (
-              <p key={idx}>{p}</p>
-            ))}
           </div>
         </div>
       </div>

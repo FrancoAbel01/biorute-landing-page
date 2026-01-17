@@ -11,14 +11,18 @@ type Row = {
   values: Record<ColKey, boolean>;
 };
 
-const columns: { key: ColKey; label: { es: string; en: string } }[] = [
-  { key: "ethylock", label: { es: "ETHYLOCK", en: "ETHYLOCK" } },
-  { key: "waxes", label: { es: "Ceras convencionales", en: "Conventional waxes" } },
-  { key: "fungicides", label: { es: "Fungicidas", en: "Fungicides" } },
-  { key: "mcp", label: { es: "1-MCP", en: "1-MCP" } },
-];
+const columns: {
+  key: ColKey;
+  label: { es: string; en: string };
+  tone: "green" | "blue";
+}[] = [
+    { key: "ethylock", label: { es: "ETHYLOCK", en: "ETHYLOCK" }, tone: "green" },
+    { key: "waxes", label: { es: "Ceras convencionales", en: "Conventional waxes" }, tone: "blue" },
+    { key: "fungicides", label: { es: "Fungicidas", en: "Fungicides" }, tone: "blue" },
+    { key: "mcp", label: { es: "1-MCP", en: "1-MCP" }, tone: "blue" },
+  ];
 
-// ✅ Datos extraídos de tu imagen
+// Datos (puedes ampliar filas sin tocar estilos)
 const rows: Row[] = [
   {
     id: "ethylene",
@@ -32,27 +36,29 @@ const rows: Row[] = [
   },
   {
     id: "respiration",
-    label: {
-      es: "Reduce respiración y deshidratación",
-      en: "Reduces respiration and dehydration",
-    },
+    label: { es: "Reduce respiración y deshidratación", en: "Reduces respiration and dehydration" },
     values: { ethylock: true, waxes: true, fungicides: false, mcp: true },
   },
   {
     id: "organoleptic",
-    label: {
-      es: "Preserva características organolépticas",
-      en: "Preserves organoleptic characteristics",
-    },
+    label: { es: "Preserva características organolépticas", en: "Preserves organoleptic characteristics" },
     values: { ethylock: true, waxes: false, fungicides: false, mcp: true },
   },
 ];
 
-function IconCheck() {
+/* =========================
+   ICONOS (serios: verde/rojo opacos)
+========================= */
+function IconCheck({ label }: { label: string }) {
   return (
     <span
-      className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/15 text-emerald-700"
-      aria-label="Sí"
+      className="
+        inline-flex h-9 w-9 items-center justify-center rounded-full
+        bg-emerald-900/15 text-emerald-900 ring-1 ring-emerald-900/25
+        shadow-[0_6px_18px_rgba(0,0,0,0.10)]
+      "
+      aria-label={label}
+      title={label}
     >
       <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="3">
         <path strokeLinecap="round" strokeLinejoin="round" d="M20 6L9 17l-5-5" />
@@ -61,11 +67,16 @@ function IconCheck() {
   );
 }
 
-function IconX() {
+function IconX({ label }: { label: string }) {
   return (
     <span
-      className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-rose-500/15 text-rose-700"
-      aria-label="No"
+      className="
+        inline-flex h-9 w-9 items-center justify-center rounded-full
+        bg-rose-950/15 text-rose-950 ring-1 ring-rose-950/25
+        shadow-[0_6px_18px_rgba(0,0,0,0.10)]
+      "
+      aria-label={label}
+      title={label}
     >
       <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="3">
         <path strokeLinecap="round" strokeLinejoin="round" d="M6 6l12 12M18 6l-12 12" />
@@ -74,70 +85,96 @@ function IconX() {
   );
 }
 
-export default function EfficacyTable() {
+/* =========================
+   COMPONENTE
+========================= */
+export default function EfficacyTablePro() {
   const { language } = useLanguage();
 
   const title =
     language === "es"
-      ? "Comparación de eficacia: ETHYLOCK vs otros tratamientos postcosecha"
-      : "Efficacy comparison: ETHYLOCK vs other postharvest products";
+      ? "Comparación de eficacia: ETHYLOCK vs tratamientos postcosecha"
+      : "Efficacy comparison: ETHYLOCK vs postharvest treatments";
+
+  const subtitle =
+    language === "es"
+      ? "Tabla comparativa con un diseño más sobrio y profesional."
+      : "A more serious, professional comparison table.";
 
   const leftHeader = language === "es" ? "Atributo / Calidad" : "Product / Quality attribute";
 
+  const yesLabel = language === "es" ? "Sí" : "Yes";
+  const noLabel = language === "es" ? "No" : "No";
+
   return (
-    <div className="w-full">
-      <div className="mb-4">
-        <h3 className="text-xl md:text-2xl font-semibold tracking-tight text-[#244629]">
-          {title}
-        </h3>
-        <p className="mt-1 text-sm md:text-base text-[#244629]/70">
-          {language === "es"
-            ? "Resumen visual basado en los atributos mostrados en la tabla original."
-            : "Visual summary based on the attributes shown in the original table."}
-        </p>
+    <section className="w-full">
+      {/* Header */}
+      <div className="mb-4 md:mb-5">
+        <h3 className="text-xl md:text-2xl font-semibold tracking-tight text-slate-900">{title}</h3>
+        <p className="mt-1 text-sm md:text-base text-slate-600">{subtitle}</p>
       </div>
 
+      {/* Card */}
       <div
         className="
-          rounded-3xl border border-[#244629]/15 bg-white/40
-          shadow-[0_16px_48px_rgba(0,0,0,0.10)]
-          overflow-hidden
+          relative overflow-hidden rounded-3xl
+          border border-slate-200/70
+          bg-white/70 backdrop-blur
+          shadow-[0_18px_55px_rgba(2,6,23,0.14)]
         "
       >
-        {/* scroll horizontal en móvil */}
+        {/* top accent */}
+        <div className="h-1 w-full bg-gradient-to-r from-emerald-950 via-slate-900 to-indigo-950 opacity-80" />
+
+        {/* Scroll container */}
         <div className="overflow-x-auto">
-          <table className="min-w-[780px] w-full border-collapse">
+          <table className="min-w-[820px] w-full border-collapse">
             <thead>
-              <tr className="bg-[#244629]/5">
+              <tr className="bg-slate-50/80">
+                {/* Sticky first column (se ve muy pro en mobile) */}
                 <th
                   className="
-                    text-left px-5 py-4 text-sm font-semibold text-[#244629]
-                    border-b border-[#244629]/15
+                    sticky left-0 z-20
+                    text-left px-5 py-4 text-sm font-semibold text-slate-900
+                    border-b border-slate-200/70
+                    bg-slate-50/95 backdrop-blur
                   "
                 >
                   {leftHeader}
                 </th>
 
-                {columns.map((c) => (
-                  <th
-                    key={c.key}
-                    className={`
-                      px-5 py-4 text-sm font-semibold text-[#244629]
-                      border-b border-[#244629]/15
-                      ${c.key === "ethylock" ? "bg-emerald-700/10" : ""}
-                    `}
-                  >
-                    <span
+                {columns.map((c) => {
+                  const isHero = c.key === "ethylock";
+                  return (
+                    <th
+                      key={c.key}
                       className={`
-                        inline-flex items-center gap-2
-                        ${c.key === "ethylock" ? "text-emerald-900" : "text-[#244629]"}
+                        px-5 py-4 text-sm font-semibold
+                        border-b border-slate-200/70
+                        ${isHero ? "bg-emerald-950/10" : "bg-indigo-950/5"}
                       `}
                     >
-                      {c.label[language]}
-                    
-                    </span>
-                  </th>
-                ))}
+                      <div className="flex items-center justify-center gap-2">
+                        <span className={isHero ? "text-emerald-950" : "text-indigo-950/90"}>
+                          {c.label[language]}
+                        </span>
+
+                        
+                        {isHero && (
+                          <span
+                            className="
+                                   hidden md:inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-medium
+                                   bg-emerald-950/10 text-emerald-950 ring-1 ring-emerald-950/20
+                                   "
+                          >
+                            {language === "es" ? "Recomendado" : "Recommended"}
+                          </span>
+                        )}
+
+                      </div>
+                    </th>
+                  );
+                })}
               </tr>
             </thead>
 
@@ -146,25 +183,36 @@ export default function EfficacyTable() {
                 <tr
                   key={r.id}
                   className={`
-                    ${idx % 2 === 0 ? "bg-white/50" : "bg-white/20"}
-                    hover:bg-[#244629]/5 transition-colors
+                    ${idx % 2 === 0 ? "bg-white/70" : "bg-slate-50/40"}
+                    hover:bg-slate-900/[0.03] transition-colors
                   `}
                 >
-                  <td className="px-5 py-4 text-sm md:text-[15px] text-[#244629] border-b border-[#244629]/10">
-                    {r.label[language]}
+                  {/* Sticky first column */}
+                  <td
+                    className="
+                      sticky left-0 z-10
+                      px-5 py-4 text-sm md:text-[15px] text-slate-900
+                      border-b border-slate-200/60
+                      bg-inherit backdrop-blur
+                      whitespace-nowrap
+                    "
+                  >
+                    <span className="whitespace-normal">{r.label[language]}</span>
                   </td>
 
                   {columns.map((c) => {
                     const ok = r.values[c.key];
+                    const isHero = c.key === "ethylock";
                     return (
                       <td
                         key={c.key}
                         className={`
-                          px-5 py-4 text-center border-b border-[#244629]/10
-                          ${c.key === "ethylock" ? "bg-emerald-700/5" : ""}
+                          px-5 py-4 text-center
+                          border-b border-slate-200/60
+                          ${isHero ? "bg-emerald-950/5" : ""}
                         `}
                       >
-                        {ok ? <IconCheck /> : <IconX />}
+                        {ok ? <IconCheck label={yesLabel} /> : <IconX label={noLabel} />}
                       </td>
                     );
                   })}
@@ -174,13 +222,30 @@ export default function EfficacyTable() {
           </table>
         </div>
 
-        {/* footer mini */}
-        <div className="px-5 py-4 bg-[#244629]/5 text-xs text-[#244629]/70">
-          {language === "es"
-            ? "✓ = Cumple el atributo · ✕ = No cumple el atributo"
-            : "✓ = Meets attribute · ✕ = Does not meet attribute"}
+        {/* Footer / legend */}
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 px-5 py-4 bg-slate-50/70 border-t border-slate-200/70">
+          <div className="text-xs text-slate-600">
+            {language === "es"
+              ? "✓ Cumple el atributo · ✕ No cumple el atributo"
+              : "✓ Meets attribute · ✕ Does not meet attribute"}
+          </div>
+
+          <div className="flex items-center gap-3 text-xs text-slate-600">
+            <span className="inline-flex items-center gap-2">
+              <span className="h-2.5 w-2.5 rounded-full bg-emerald-950/70" />
+              {language === "es" ? "Énfasis: ETHYLOCK" : "Highlight: ETHYLOCK"}
+            </span>
+            <span className="inline-flex items-center gap-2">
+              <span className="h-2.5 w-2.5 rounded-full bg-indigo-950/60" />
+              {language === "es" ? "Otros tratamientos" : "Other treatments"}
+            </span>
+            <span className="inline-flex items-center gap-2">
+              <span className="h-2.5 w-2.5 rounded-full bg-rose-950/70" />
+              {language === "es" ? "No cumple" : "Does not meet"}
+            </span>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
