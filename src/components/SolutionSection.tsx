@@ -62,7 +62,23 @@ export default function SolutionSection() {
           </div>
 
           <div className="mt-5">
-          
+          <div className="flex flex-wrap gap-2">
+              {t.highlights.map((h, idx) => (
+                <span
+                  key={idx}
+                  className="
+                    rounded-full
+                    px-3 py-1.5
+                    text-[16px] 
+                    font-bold
+                    text-[#244629]
+                    bg-[#244629]/10
+                  "
+                >
+                  {h.label}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
 
