@@ -88,9 +88,8 @@ function getAnimatedMeta(raw: string) {
     type: "plain" as const,
   };
 }
-
-/* ---------- component ---------- */
-export default function Idea() {
+ 
+export default function ChileanAgroExportChallenge() {
   const { language } = useLanguage();
 
   const content = useMemo(
@@ -134,8 +133,7 @@ export default function Idea() {
   const contentRef = useRef<HTMLDivElement | null>(null);
 
   const [p, setP] = useState(0);
-
-  // ✅ altura “final” dinámica (en svh) para que quepa TODO el contenido en móvil
+ 
   const [endH, setEndH] = useState(100);
 
   useEffect(() => {
@@ -205,7 +203,7 @@ export default function Idea() {
 
   return (
     <section id="idea" className="relative z-10">
-      {/* Trigger: lo hacemos proporcional al endH para que el scroll “alcance” */}
+ 
       <div
         ref={triggerRef}
         className="relative"
@@ -231,13 +229,13 @@ export default function Idea() {
             }}
           >
             <div className="h-full w-full text-[#244629]">
-              {/* ✅ ESTE wrapper se mide para calcular endH */}
+           
               <div
                 ref={contentRef}
                 className="max-w-6xl mx-auto px-6 py-10 md:py-14"
               >
                 <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-12 items-start">
-                  {/* LEFT */}
+                  
                   <div className="md:col-span-5 md:sticky md:top-16">
                     <h1 className="text-5xl md:text-7xl font-semibold tracking-tight text-[#244629]">
                       {t.title}
@@ -247,7 +245,7 @@ export default function Idea() {
 
                   </div>
 
-                  {/* RIGHT */}
+               
                   <div className="md:col-span-7">
                     
                     <p className="text-base md:text-lg leading-relaxed text-[#244629] pb-4 space-y-6">
@@ -303,11 +301,9 @@ export default function Idea() {
                   </div>
                 </div>
 
-                {/* ✅ BULLETS GRANDES CENTRADAS (UNA ABAJO DE OTRA) */}
-
-                {/* fin bullets */}
+                               
               </div>
-              {/* fin contentRef */}
+            
             </div>
           </div>
         </div>

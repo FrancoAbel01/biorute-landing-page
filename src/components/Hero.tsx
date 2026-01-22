@@ -8,9 +8,9 @@ export default function Hero() {
 
   return (
     <section className="fixed inset-0 z-0">
-      {/* Imagen */}
+      
       <div className="absolute inset-0">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
+     
         <img
           src={imgSrc}
           alt="Hero background"
@@ -18,7 +18,7 @@ export default function Hero() {
         />
       </div>
 
-      {/* Overlay oscuro */}
+   
       <div className="absolute inset-0 bg-black/45" />
     </section>
   );

@@ -3,7 +3,7 @@
 import { useLanguage } from "../context/LanguageContext";
 import EvolutionaryComponent from "./EvolutionaryComponent";
 
-export default function About() {
+export default function SolutionSection() {
   const { language } = useLanguage();
 
   const content = {
@@ -42,9 +42,9 @@ export default function About() {
       id="about"
       className="relative pt-0 pb-10 bg-[#F9F3E7] overflow-hidden text-[#244629]"
     >
-      {/* Contenido alineado a la izquierda */}
+ 
       <div className="max-w-6xl mx-auto px-6 py-10 md:py-14">
-        {/* Texto descriptivo */}
+   
         <div className="w-full text-left mb-12">
           <h2 className="mt-2 text-3xl md:text-5xl font-semibold tracking-tight">
             {t.title}
@@ -54,7 +54,7 @@ export default function About() {
             {t.lead}
           </p>
 
-          {/* Paragraphs */}
+       
           <div className="mt-6 space-y-5 text-[15px] md:text-lg leading-relaxed text-[#244629]/80">
             {t.paragraphs.map((p, idx) => (
               <p key={idx}>{p}</p>
@@ -62,27 +62,11 @@ export default function About() {
           </div>
 
           <div className="mt-5">
-            {/* <div className="flex flex-wrap gap-2">
-              {t.highlights.map((h, idx) => (
-                <span
-                  key={idx}
-                  className="
-                    rounded-full
-                    px-3 py-1.5
-                    text-[16px] 
-                    font-bold
-                    text-[#244629]
-                    bg-[#244629]/10
-                  "
-                >
-                  {h.label}
-                </span>
-              ))}
-            </div> */}
+          
           </div>
         </div>
 
-        {/* EvolutionaryComponent centrado */}
+     
         <div className="flex justify-center items-center w-full mt-12">
           <div className="w-full max-w-6xl">
             <EvolutionaryComponent 

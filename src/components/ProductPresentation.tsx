@@ -3,22 +3,22 @@
 import { useEffect, useRef } from "react";
 import { useLanguage } from "../context/LanguageContext";
 
-// Imagen única
+ 
 import cereza from "../imagen/imagenCompleta.png";
 
 import EfficacyTable from "./EfficacyTable";
 
-/* ---------- helpers ---------- */
+ 
 function clamp(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, n));
 }
 
-// easeOutCubic
+ 
 function easeOutCubic(t: number) {
   return 1 - Math.pow(1 - t, 3);
 }
 
-export default function Info() {
+export default function ProductPresentation() {
   const { language } = useLanguage();
 
   const content = {
@@ -45,7 +45,7 @@ export default function Info() {
   const imgRef = useRef<HTMLImageElement | null>(null);
   const bottomPanelRef = useRef<HTMLDivElement | null>(null);
 
-  /* ---------- PARALLAX “RELATIVO” + PANEL OVER ---------- */
+  
   useEffect(() => {
     let raf = 0;
 
@@ -58,20 +58,16 @@ export default function Info() {
 
       const vh = window.innerHeight || 1;
 
-      // =====================================================
-      // 1) IMAGEN: parallax relativo al viewport (se nota MÁS)
-      // =====================================================
-      // Usamos la posición del sticky wrapper en el viewport
+     
       const sr = stickyWrap.getBoundingClientRect();
 
-      // pImg: 0 cuando el wrapper está abajo, 1 cuando ya pasó
+      
       const pImg = clamp((vh - sr.top) / (vh + sr.height), 0, 1);
 
-      // Centro -> -1..1 (sensación más “relativa”)
+       
       const rel = (pImg - 0.5) * 2;
 
-      // ✅ Ajustes que SÍ se sienten:
-      // - La imagen se mueve “lento” pero con más recorrido
+       
       const IMG_PARALLAX = 140; // <-- sube/baja si quieres más/menos (recomendado 120-180)
       const yImg = rel * (IMG_PARALLAX * 0.55); // 55% del recorrido (plano lento)
       const tilt = rel * -2.6; // más tilt (sutil pero visible)
@@ -79,18 +75,15 @@ export default function Info() {
 
       img.style.transform = `translate3d(0, ${yImg}px, 0) scale(${scale}) rotateX(${tilt}deg)`;
 
-      // =====================================================
-      // 2) PANEL: se desliza sobre la imagen al entrar
-      // =====================================================
-      // Progreso del panel respecto al viewport (cuando empieza a aparecer)
+      
       const pr = panel.getBoundingClientRect();
 
-      // pPanel: 0 cuando está fuera abajo, 1 cuando ya está “asentado”
+      
       const pPanel = clamp((vh - pr.top) / (vh * 0.9), 0, 1);
       const e = easeOutCubic(pPanel);
 
-      // ✅ Panel se mueve MÁS (capa superior)
-      const PANEL_LIFT = 140; // <-- sube/baja si quieres que “invada” más (100-180)
+     
+      const PANEL_LIFT = 140;  
       const yPanel = (1 - e) * PANEL_LIFT;
 
       panel.style.transform = `translate3d(0, ${yPanel}px, 0)`;
@@ -118,7 +111,7 @@ export default function Info() {
       id="info"
       className="relative bg-[#F9F3E7] text-[#244629] overflow-hidden"
     >
-      {/* ===================== TEXTO ARRIBA (invade la imagen) ===================== */}
+       
       <div className="relative z-20 -mb-16 md:-mb-24">
         <div className="bg-[#F9F3E7] rounded-b-xl pt-20 pb-10">
           <div className="max-w-6xl mx-auto px-6 text-center">
@@ -133,7 +126,7 @@ export default function Info() {
         </div>
       </div>
 
-      {/* ===================== IMAGEN (ESCENA CON EFECTO) ===================== */}
+      
       <div ref={sceneRef} className="relative h-[860px] md:h-[1040px]">
         <div className="absolute inset-0 z-0 pointer-events-none">
           <div
@@ -144,7 +137,7 @@ export default function Info() {
               className="absolute inset-0 rounded-b-xl overflow-hidden"
               style={{ perspective: "1200px", transformStyle: "preserve-3d" }}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
+            
               <img
                 ref={imgRef}
                 src={toSrc(cereza)}
@@ -168,7 +161,7 @@ export default function Info() {
         <div className="absolute inset-x-0 bottom-0 h-[280px] bg-gradient-to-b from-transparent to-[#F9F3E7]" />
       </div>
 
-      {/* ===================== TABLA (invade + se mueve encima) ===================== */}
+      
       <div className="relative z-20 -mt-52 md:-mt-64">
         <div
           ref={bottomPanelRef}

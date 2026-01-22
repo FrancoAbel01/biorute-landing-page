@@ -12,7 +12,7 @@ export default function HeroTextOverlay() {
   const ref = useRef<HTMLDivElement | null>(null);
   const [p, setP] = useState(0);
 
-  // progreso 0 → 1 mientras se hace scroll en el hero
+   
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -24,7 +24,7 @@ export default function HeroTextOverlay() {
         const rect = el.getBoundingClientRect();
         const vh = window.innerHeight;
 
-        // cuando el hero empieza a desaparecer
+         
         const raw = (-rect.top) / (vh * 0.6);
         setP(clamp(raw, 0, 1));
       });
@@ -57,7 +57,7 @@ export default function HeroTextOverlay() {
 
   const t = content[language];
 
-  // 🎯 Animación del texto
+ 
   const translateY = Math.round(-80 * p); // se va hacia arriba
   const opacity = 1 - p;                 // se desvanece
   const scale = 1 - 0.05 * p;            // leve compresión

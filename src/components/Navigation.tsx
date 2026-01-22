@@ -13,12 +13,12 @@ export default function Navigation() {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Scroll hacia abajo → ocultar
+      
       if (currentScrollY > lastScrollY.current && currentScrollY > 80) {
         setIsNavbarHidden(true);
       }
 
-      // Scroll hacia arriba → mostrar
+  
       if (currentScrollY < lastScrollY.current) {
         setIsNavbarHidden(false);
       }
@@ -48,12 +48,11 @@ export default function Navigation() {
           px-4 sm:px-8
         "
       >
-        {/* ✅ 3-column layout prevents overlap on mobile */}
+   
         <div className="grid h-12 grid-cols-[1fr_auto_1fr] items-center">
-          {/* Left spacer */}
+          
           <div />
-
-          {/* Center logo (no absolute) */}
+ 
           <div className="flex justify-center">
             <img
               src={(logo as unknown as { src: string })?.src ?? (logo as unknown as string)}
@@ -63,7 +62,7 @@ export default function Navigation() {
             />
           </div>
 
-          {/* Right: Language toggle */}
+          
           <div className="flex justify-end">
             <div
               className="

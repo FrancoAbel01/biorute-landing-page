@@ -23,7 +23,7 @@ const columns: {
   { key: "mcp", label: { es: "1-MCP", en: "1-MCP" }, tone: "blue" },
 ];
 
-// Datos
+ 
 const rows: Row[] = [
   {
     id: "ethylene",
@@ -47,9 +47,7 @@ const rows: Row[] = [
   },
 ];
 
-/* =========================
-   ICONOS
-========================= */
+ 
 function IconCheck({ label }: { label: string }) {
   return (
     <span
@@ -86,9 +84,7 @@ function IconX({ label }: { label: string }) {
   );
 }
 
-/* =========================
-   COMPONENTE CON SCROLL CONTROLADO
-========================= */
+ 
 export default function EfficacyTablePro() {
   const { language } = useLanguage();
   const tableContainerRef = useRef<HTMLDivElement>(null);
@@ -111,7 +107,7 @@ export default function EfficacyTablePro() {
   const yesLabel = language === "es" ? "Sí" : "Yes";
   const noLabel = language === "es" ? "No" : "No";
 
-  // Detectar si es móvil
+ 
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
@@ -122,7 +118,7 @@ export default function EfficacyTablePro() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Controlar visibilidad de flechas de scroll
+   
   const updateScrollArrows = () => {
     if (tableContainerRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = tableContainerRef.current;
@@ -131,7 +127,7 @@ export default function EfficacyTablePro() {
     }
   };
 
-  // Scroll controlado
+   
   const scrollLeft = () => {
     if (tableContainerRef.current) {
       tableContainerRef.current.scrollBy({ left: -200, behavior: 'smooth' });
@@ -144,14 +140,14 @@ export default function EfficacyTablePro() {
     }
   };
 
-  // Inicializar eventos de scroll
+   
   useEffect(() => {
     const tableContainer = tableContainerRef.current;
     if (tableContainer) {
       tableContainer.addEventListener('scroll', updateScrollArrows);
       window.addEventListener('resize', updateScrollArrows);
       
-      // Verificar inicial
+       
       updateScrollArrows();
       
       return () => {
@@ -163,13 +159,13 @@ export default function EfficacyTablePro() {
 
   return (
     <section className="w-full">
-      {/* Header */}
+       
       <div className="mb-4 md:mb-5">
         <h3 className="text-xl md:text-2xl font-semibold tracking-tight text-slate-900">{title}</h3>
         <p className="mt-1 text-sm md:text-base text-slate-600">{subtitle}</p>
       </div>
 
-      {/* Indicador de scroll para móvil */}
+       
       {isMobile && (
         <div className="mb-3 flex items-center justify-between px-2 bg-slate-50 rounded-lg p-3">
           <div className="flex items-center gap-2 text-xs font-medium text-slate-700">
@@ -201,7 +197,7 @@ export default function EfficacyTablePro() {
         </div>
       )}
 
-      {/* Card Container */}
+      
       <div
         className="
           relative overflow-hidden rounded-3xl
@@ -210,10 +206,10 @@ export default function EfficacyTablePro() {
           shadow-[0_18px_55px_rgba(2,6,23,0.14)]
         "
       >
-        {/* Top accent */}
+        
         <div className="h-1 w-full bg-gradient-to-r from-emerald-950 via-slate-900 to-indigo-950 opacity-80" />
 
-        {/* Table Container with Controlled Scroll */}
+        
         <div 
           ref={tableContainerRef}
           className="overflow-x-auto scrollbar-thin scrollbar-thumb-slate-300 scrollbar-track-slate-100"
@@ -222,7 +218,7 @@ export default function EfficacyTablePro() {
           <table className="min-w-[820px] md:min-w-full w-full border-collapse">
             <thead>
               <tr className="bg-slate-50/80">
-                {/* Sticky first column - SOLO en desktop */}
+                
                 <th
                   className={`
                     text-left px-5 py-4 text-sm font-semibold text-slate-900
@@ -240,7 +236,7 @@ export default function EfficacyTablePro() {
                   return (
                     <th
                       key={c.key}
-                      // REMOVEMOS el sticky en móvil para que haga scroll con el resto
+                      
                       className={`
                         px-5 py-4 text-sm font-semibold
                         border-b border-slate-200/70
@@ -279,7 +275,7 @@ export default function EfficacyTablePro() {
                     hover:bg-slate-900/[0.03] transition-colors
                   `}
                 >
-                  {/* Sticky first column - SOLO en desktop */}
+                  
                   <td
                     className={`
                       px-5 py-4 text-sm md:text-[15px] text-slate-900
@@ -316,7 +312,7 @@ export default function EfficacyTablePro() {
           </table>
         </div>
 
-        {/* Indicador de scroll para móvil (abajo) */}
+        
         {isMobile && (
           <div className="px-5 py-3 border-t border-slate-200/60 bg-white/50">
             <div className="flex items-center justify-center gap-3">
@@ -337,7 +333,7 @@ export default function EfficacyTablePro() {
           </div>
         )}
 
-        {/* Footer / legend */}
+        
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 px-5 py-4 bg-slate-50/70 border-t border-slate-200/70">
           <div className="text-xs text-slate-600 font-medium">
             <span className="inline-flex items-center gap-1 mr-3">
@@ -362,8 +358,7 @@ export default function EfficacyTablePro() {
           </div>
         </div>
       </div>
-
-      {/* Indicador de visualización */}
+ 
       {isMobile && (
         <div className="mt-4 flex items-center justify-center gap-2 text-xs text-slate-500 bg-slate-50 rounded-lg p-2">
           <Smartphone className="h-3 w-3" />

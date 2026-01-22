@@ -37,12 +37,12 @@ export default function Footer() {
   return (
     <footer className="bg-[#2f4e37] text-white ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-        {/* Top */}
+        
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-10">
-          {/* Brand */}
+          
           <div className="min-w-[260px]">
             <div className="flex items-center gap-4">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
+              
               <img
                 src={logo as unknown as string}
                 alt="BioRoute Logo"
@@ -56,7 +56,7 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Links */}
+       
           <div className="w-full md:w-auto">
             <h4 className="font-semibold text-base mb-4 text-white">
               {t.programTitle}
@@ -76,7 +76,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom */}
+       
         <div className="mt-10 border-t border-white/25 pt-6 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
           <p className="text-sm text-white/85 font-medium">{t.rights}</p>
 

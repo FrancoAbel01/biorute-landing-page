@@ -173,7 +173,7 @@ const EvolutionaryComponent: React.FC<EvolutionaryComponentProps> = ({
       style={{ backgroundColor: colors.background }}
     >
       <div className="p-6 md:p-10">
-        {/* Encabezado */}
+ 
         <div className="text-center mb-10">
           <h2 
             className="text-3xl md:text-4xl font-bold mb-3"
@@ -184,17 +184,16 @@ const EvolutionaryComponent: React.FC<EvolutionaryComponentProps> = ({
           
         </div>
 
-        {/* Barra de Progreso */}
+        
         {showProgressBar && (
           <div className="mb-10">
             <div className="relative">
-              {/* Línea de fondo */}
+              
               <div 
                 className="absolute top-5 left-0 right-0 h-2 rounded-full z-0 opacity-30"
                 style={{ backgroundColor: colors.border }}
               ></div>
-              
-              {/* Línea de progreso activa */}
+             
               <div 
                 className="absolute top-5 left-0 h-2 rounded-full z-10 transition-all duration-700 ease-out"
                 style={{ 
@@ -203,7 +202,7 @@ const EvolutionaryComponent: React.FC<EvolutionaryComponentProps> = ({
                 }}
               ></div>
               
-              {/* Pasos */}
+               
               <div className="relative flex justify-between z-20">
                 {steps.map((step, index) => {
                   const status = getStepStatus(index);
@@ -220,7 +219,7 @@ const EvolutionaryComponent: React.FC<EvolutionaryComponentProps> = ({
                       } as React.CSSProperties}
                       type="button"
                     >
-                      {/* Círculo del paso */}
+                     
                       <div 
                         className={`
                           w-14 h-14 rounded-full flex items-center justify-center mb-4 
@@ -252,7 +251,7 @@ const EvolutionaryComponent: React.FC<EvolutionaryComponentProps> = ({
                         )}
                       </div>
                       
-                      {/* Información del paso */}
+              
                       <div className="text-center">
                         <span 
                           className="block text-xs font-medium px-3 py-1 rounded-full transition-all duration-300"
@@ -280,10 +279,10 @@ const EvolutionaryComponent: React.FC<EvolutionaryComponentProps> = ({
           </div>
         )}
 
-        {/* Contenido del Paso Actual */}
+        
         <div className="animate-fadeIn">
           <div className="grid lg:grid-cols-2 gap-8 mb-8">
-            {/* Imagen */}
+            
             <div className="relative overflow-hidden rounded-2xl shadow-2xl group">
               <img
                 src={steps[currentStep].image}
@@ -305,7 +304,7 @@ const EvolutionaryComponent: React.FC<EvolutionaryComponentProps> = ({
               </div>
             </div>
             
-            {/* Información */}
+         
             <div className="flex flex-col justify-center p-4">
               <div className="mb-6">
                 <div className="flex items-center justify-between mb-4">
@@ -347,7 +346,7 @@ const EvolutionaryComponent: React.FC<EvolutionaryComponentProps> = ({
                 </h3>
               </div>
               
-              {/* Lista de puntos clave */}
+             
               <div className="space-y-4">
                 {steps[currentStep].points.map((point, index) => (
                   <div 
