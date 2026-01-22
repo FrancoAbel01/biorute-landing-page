@@ -1,6 +1,7 @@
 "use client";
 
 import { useLanguage } from "../context/LanguageContext";
+import EvolutionaryComponent from "./EvolutionaryComponent";
 
 export default function About() {
   const { language } = useLanguage();
@@ -42,8 +43,9 @@ export default function About() {
       className="relative pt-0 pb-10 bg-[#F9F3E7] overflow-hidden text-[#244629]"
     >
       {/* Contenido alineado a la izquierda */}
-      <div className="relative w-full px-6 md:pl-12 md:pr-6">
-        <div className="w-full max-w-3xl text-left">
+      <div className="max-w-6xl mx-auto px-6 py-10 md:py-14">
+        {/* Texto descriptivo */}
+        <div className="w-full text-left mb-12">
           <h2 className="mt-2 text-3xl md:text-5xl font-semibold tracking-tight">
             {t.title}
           </h2>
@@ -51,9 +53,6 @@ export default function About() {
           <p className="mt-4 text-base md:text-lg leading-relaxed text-[#244629]">
             {t.lead}
           </p>
-
-          {/* ✅ HIGHLIGHTS SIMPLES Y UNIDOS */}
-          
 
           {/* Paragraphs */}
           <div className="mt-6 space-y-5 text-[15px] md:text-lg leading-relaxed text-[#244629]/80">
@@ -63,7 +62,7 @@ export default function About() {
           </div>
 
           <div className="mt-5">
-            <div className="flex flex-wrap gap-2">
+            {/* <div className="flex flex-wrap gap-2">
               {t.highlights.map((h, idx) => (
                 <span
                   key={idx}
@@ -79,7 +78,18 @@ export default function About() {
                   {h.label}
                 </span>
               ))}
-            </div>
+            </div> */}
+          </div>
+        </div>
+
+        {/* EvolutionaryComponent centrado */}
+        <div className="flex justify-center items-center w-full mt-12">
+          <div className="w-full max-w-6xl">
+            <EvolutionaryComponent 
+              className="mx-auto"
+              showNavigation={true}
+              showProgressBar={true}
+            />
           </div>
         </div>
       </div>

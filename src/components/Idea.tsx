@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
 
-/* ---------- helpers ---------- */
+
 function clamp(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, n));
 }
@@ -192,7 +192,7 @@ export default function Idea() {
     };
   }, []);
 
-  // 👉 mantenemos la “misma” animación (delta 30svh), pero ahora el final puede ser > 100
+  
   const delta = 30;
   const baseTop = 30;
 
