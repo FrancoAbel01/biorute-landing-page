@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import logo from "../imagen/logoBioRoute.png";
 import { useLanguage } from "../context/LanguageContext";
 
@@ -13,12 +14,10 @@ export default function Navigation() {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Oculta al bajar
       if (currentScrollY > lastScrollY.current && currentScrollY > 80) {
         setIsNavbarHidden(true);
       }
 
-      // Muestra al subir
       if (currentScrollY < lastScrollY.current) {
         setIsNavbarHidden(false);
       }
@@ -49,12 +48,10 @@ export default function Navigation() {
         "
       >
         <div className="grid h-12 grid-cols-[1fr_auto_1fr] items-center">
-          {/* =====================
-              LINK IZQUIERDA
-          ====================== */}
+          {/* LINK IZQUIERDA */}
           <div className="flex items-center">
-            <a
-              href="/vision"
+            <Link
+              to="/vision"
               className="
                 relative text-sm sm:text-base font-medium text-[#244629]
                 after:absolute after:left-0 after:-bottom-1
@@ -64,14 +61,12 @@ export default function Navigation() {
               "
             >
               {language === "es" ? "Visión" : "Vision"}
-            </a>
+            </Link>
           </div>
 
-          {/* =====================
-              LOGO CENTRO (link a /)
-          ====================== */}
+          {/* LOGO CENTRO (a /) */}
           <div className="flex justify-center">
-            <a href="/" aria-label="Go to homepage">
+            <Link to="/" aria-label="Go to homepage">
               <img
                 src={
                   (logo as unknown as { src: string })?.src ??
@@ -81,12 +76,10 @@ export default function Navigation() {
                 className="h-10 sm:h-12 w-auto select-none cursor-pointer"
                 draggable={false}
               />
-            </a>
+            </Link>
           </div>
 
-          {/* =====================
-              IDIOMA DERECHA
-          ====================== */}
+          {/* IDIOMA DERECHA */}
           <div className="flex justify-end">
             <div
               className="
