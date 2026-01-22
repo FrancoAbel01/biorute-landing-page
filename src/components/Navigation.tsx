@@ -13,12 +13,12 @@ export default function Navigation() {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      
+      // Oculta al bajar
       if (currentScrollY > lastScrollY.current && currentScrollY > 80) {
         setIsNavbarHidden(true);
       }
 
-  
+      // Muestra al subir
       if (currentScrollY < lastScrollY.current) {
         setIsNavbarHidden(false);
       }
@@ -48,21 +48,45 @@ export default function Navigation() {
           px-4 sm:px-8
         "
       >
-   
         <div className="grid h-12 grid-cols-[1fr_auto_1fr] items-center">
-          
-          <div />
- 
-          <div className="flex justify-center">
-            <img
-              src={(logo as unknown as { src: string })?.src ?? (logo as unknown as string)}
-              alt="BioRoute Logo"
-              className="h-10 sm:h-12 w-auto select-none"
-              draggable={false}
-            />
+          {/* =====================
+              LINK IZQUIERDA
+          ====================== */}
+          <div className="flex items-center">
+            <a
+              href="/vision"
+              className="
+                relative text-sm sm:text-base font-medium text-[#244629]
+                after:absolute after:left-0 after:-bottom-1
+                after:h-[2px] after:w-0 after:bg-[#244629]
+                after:transition-all after:duration-300
+                hover:after:w-full
+              "
+            >
+              {language === "es" ? "Visión" : "Vision"}
+            </a>
           </div>
 
-          
+          {/* =====================
+              LOGO CENTRO (link a /)
+          ====================== */}
+          <div className="flex justify-center">
+            <a href="/" aria-label="Go to homepage">
+              <img
+                src={
+                  (logo as unknown as { src: string })?.src ??
+                  (logo as unknown as string)
+                }
+                alt="BioRoute Logo"
+                className="h-10 sm:h-12 w-auto select-none cursor-pointer"
+                draggable={false}
+              />
+            </a>
+          </div>
+
+          {/* =====================
+              IDIOMA DERECHA
+          ====================== */}
           <div className="flex justify-end">
             <div
               className="

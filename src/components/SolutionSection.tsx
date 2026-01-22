@@ -67,15 +67,7 @@ export default function SolutionSection() {
         </div>
 
      
-        <div className="flex justify-center items-center w-full mt-12">
-          <div className="w-full max-w-6xl">
-            <EvolutionaryComponent 
-              className="mx-auto"
-              showNavigation={true}
-              showProgressBar={true}
-            />
-          </div>
-        </div>
+    
       </div>
     </section>
   );

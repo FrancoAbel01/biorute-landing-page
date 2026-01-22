@@ -114,12 +114,12 @@ export default function ProductPresentation() {
        
       <div className="relative z-20 -mb-16 md:-mb-24">
         <div className="bg-[#F9F3E7] rounded-b-xl pt-20 pb-10">
-          <div className="max-w-6xl mx-auto px-6 text-center">
+          <div className="max-w-6xl mx-auto px-6 ">
             <h2 className="text-3xl md:text-5xl font-semibold tracking-tight">
               {t.title}
             </h2>
 
-            <p className="mt-6 max-w-3xl mx-auto text-base md:text-lg leading-relaxed text-[#244629]/80">
+            <p className="mt-6 max-w-3xl  text-base md:text-lg leading-relaxed text-[#244629]/80">
               {t.description}
             </p>
           </div>
