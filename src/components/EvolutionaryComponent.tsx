@@ -53,7 +53,7 @@ const EvolutionaryComponent: React.FC<EvolutionaryComponentProps> = ({
   // Textos traducibles
   const translations = {
     en: {
-      title: "Our Evolutionary Process",
+      title: "Next Steps",
       subtitle: "Follow our proven 3-step process from concept to completion",
       step: "Step",
       of: "of",
@@ -77,7 +77,7 @@ const EvolutionaryComponent: React.FC<EvolutionaryComponentProps> = ({
       ]
     },
     es: {
-      title: "Nuestro Proceso Evolutivo",
+      title: "Próximos Pasos",
       subtitle: "Sigue nuestro proceso probado de 3 pasos desde el concepto hasta la finalización",
       step: "Paso",
       of: "de",
