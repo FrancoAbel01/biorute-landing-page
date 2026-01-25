@@ -51,7 +51,7 @@ export default function Navigation() {
           {/* LINK IZQUIERDA */}
           <div className="flex items-center">
             <Link
-              to="/vision"
+              to="/equipo"
               className="
                 relative text-sm sm:text-base font-medium text-[#244629]
                 after:absolute after:left-0 after:-bottom-1
@@ -60,7 +60,7 @@ export default function Navigation() {
                 hover:after:w-full
               "
             >
-              {language === "es" ? "Visión" : "Vision"}
+              {language === "es" ? "Nuestro Equipo" : "Our Team"}
             </Link>
           </div>
 
@@ -79,7 +79,7 @@ export default function Navigation() {
             </Link>
           </div>
 
-          {/* IDIOMA DERECHA */}
+         
           <div className="flex justify-end">
             <div
               className="

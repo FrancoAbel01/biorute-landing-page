@@ -5,7 +5,6 @@ import EvolutionaryComponent from "./EvolutionaryComponent";
 
 export default function SolutionSection() {
   const { language } = useLanguage();
-
   const content = {
     en: {
       title: "Our Solution",
@@ -42,9 +41,9 @@ export default function SolutionSection() {
       id="about"
       className="relative pt-0 pb-10 bg-[#F9F3E7] overflow-hidden text-[#244629]"
     >
- 
+
       <div className="max-w-6xl mx-auto px-6 py-10 md:py-14">
-   
+
         <div className="w-full text-left mb-12">
           <h2 className="mt-2 text-3xl md:text-5xl font-semibold tracking-tight">
             {t.title}
@@ -54,7 +53,7 @@ export default function SolutionSection() {
             {t.lead}
           </p>
 
-       
+
           <div className="mt-6 space-y-5 text-[15px] md:text-lg leading-relaxed text-[#244629]/80">
             {t.paragraphs.map((p, idx) => (
               <p key={idx}>{p}</p>
@@ -62,7 +61,7 @@ export default function SolutionSection() {
           </div>
 
           <div className="mt-5">
-          <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2">
               {t.highlights.map((h, idx) => (
                 <span
                   key={idx}
@@ -82,8 +81,8 @@ export default function SolutionSection() {
           </div>
         </div>
 
-     
-    
+
+
       </div>
     </section>
   );

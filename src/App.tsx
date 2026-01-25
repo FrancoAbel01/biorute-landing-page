@@ -15,7 +15,7 @@ function App() {
             <HomePage />
           </Layout>
         } />
-        <Route path="/vision" element={
+        <Route path="/equipo" element={
           <Layout>
             <Vision />
           </Layout>

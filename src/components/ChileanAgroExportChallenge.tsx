@@ -3,11 +3,15 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
 
-
 function clamp(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, n));
 }
 
+/**
+ * Count-up hook (used inside map, but the bullet list length is stable)
+ * If your bullets array ever becomes dynamic (add/remove items), we should refactor
+ * to a <StatItem /> component to follow hooks rules strictly.
+ */
 function useCountUp(end: number, start: boolean, duration = 1200) {
   const [value, setValue] = useState(0);
 
@@ -88,7 +92,7 @@ function getAnimatedMeta(raw: string) {
     type: "plain" as const,
   };
 }
- 
+
 export default function ChileanAgroExportChallenge() {
   const { language } = useLanguage();
 
@@ -133,7 +137,6 @@ export default function ChileanAgroExportChallenge() {
   const contentRef = useRef<HTMLDivElement | null>(null);
 
   const [p, setP] = useState(0);
- 
   const [endH, setEndH] = useState(100);
 
   useEffect(() => {
@@ -190,7 +193,6 @@ export default function ChileanAgroExportChallenge() {
     };
   }, []);
 
-  
   const delta = 30;
   const baseTop = 30;
 
@@ -203,7 +205,6 @@ export default function ChileanAgroExportChallenge() {
 
   return (
     <section id="idea" className="relative z-10">
- 
       <div
         ref={triggerRef}
         className="relative"
@@ -229,29 +230,27 @@ export default function ChileanAgroExportChallenge() {
             }}
           >
             <div className="h-full w-full text-[#244629]">
-           
               <div
                 ref={contentRef}
                 className="max-w-6xl mx-auto px-6 py-10 md:py-14"
               >
                 <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-12 items-start">
-                  
-                  <div className="md:col-span-5 md:sticky md:top-16">
-                    <h1 className="text-5xl md:text-7xl font-semibold tracking-tight text-[#244629]">
+                  {/* ✅ FIX: min-w-0 so the grid item can shrink (prevents overlap) */}
+                  <div className="md:col-span-5 md:sticky md:top-16 min-w-0">
+                    {/* ✅ FIX: break-words (safe) so long words wrap instead of overflowing */}
+                    <h1 className="text-5xl md:text-7xl font-semibold tracking-tight text-[#244629] break-words">
                       {t.title}
                     </h1>
                     <div className="my-10 h-px w-full bg-[#244629]/20 reopen" />
-
-
                   </div>
 
-               
-                  <div className="md:col-span-7">
-                    
+                  {/* ✅ Optional: min-w-0 also on the right column */}
+                  <div className="md:col-span-7 min-w-0">
                     <p className="text-base md:text-lg leading-relaxed text-[#244629] pb-4 space-y-6">
                       {t.lead}
                     </p>
-                    <div className="space-y-6  md:text-lg text-[#244629]/80 leading-relaxed">
+
+                    <div className="space-y-6 md:text-lg text-[#244629]/80 leading-relaxed">
                       {t.paragraphs.map((text, index) => (
                         <p key={index}>{text}</p>
                       ))}
@@ -262,8 +261,9 @@ export default function ChileanAgroExportChallenge() {
                         ? "El problema no es la calidad: es el tiempo. La vida útil define qué mercados son alcanzables."
                         : "The issue isn’t quality: it’s time. Shelf life determines which markets are reachable."}
                     </p>
+
                     <div className="mt-16 flex">
-                      <div className="flex flex-col gap-8 max-w-3xl w-full ">
+                      <div className="flex flex-col gap-8 max-w-3xl w-full">
                         {t.bullets.map((b, i) => {
                           const meta = getAnimatedMeta(b.value);
                           const duration = meta.type === "percent" ? 1400 : 1200;
@@ -286,7 +286,7 @@ export default function ChileanAgroExportChallenge() {
                                 transitionDelay: `${i * 160}ms`,
                               }}
                             >
-                              <div className="text-sm uppercase tracking-wide text-[#244629] ">
+                              <div className="text-sm uppercase tracking-wide text-[#244629]">
                                 {b.label}
                               </div>
 
@@ -300,10 +300,7 @@ export default function ChileanAgroExportChallenge() {
                     </div>
                   </div>
                 </div>
-
-                               
               </div>
-            
             </div>
           </div>
         </div>
