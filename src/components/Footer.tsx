@@ -13,7 +13,6 @@ export default function Footer() {
       programTitle: "Program",
       links: [
         { name: "What is BioRoute", href: "#about" },
-        { name: "Strategic Pillars", href: "#pillars" },
       ],
       rights: `© ${currentYear} BioRoute Chile. All rights reserved.`,
       builtBy: "Built by",
