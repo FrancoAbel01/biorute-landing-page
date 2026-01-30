@@ -26,7 +26,6 @@ export default function Footer() {
       programTitle: "Programa",
       links: [
         { name: "Qué es BioRoute", href: "#about" },
-        { name: "Pilares Estratégicos", href: "#pillars" },
       ],
       rights: `© ${currentYear} BioRoute Chile. Todos los derechos reservados.`,
       builtBy: "Desarrollado por",
